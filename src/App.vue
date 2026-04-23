@@ -33,6 +33,30 @@ const isFormOpen = ref(false);
 
     <main class="max-w-md mx-auto space-y-6">
       <h2 class="text-sm font-black uppercase tracking-widest text-slate-400 px-1">Letzte Buchungen</h2>
+
+      <section class="max-w-md mx-auto mb-8">
+        <div class="stats shadow-sm w-full bg-white rounded-3xl border border-black/5 overflow-hidden">
+          
+          <!-- Gesamter Verbrauch (Ausgaben) -->
+          <div class="stat">
+            <div class="stat-title text-xs font-bold uppercase tracking-wider">Verbrauch</div>
+            <div class="stat-value text-error text-2xl">
+              {{ formatCurrency(transactionStore.totalExpenses, transactionStore.settings.currency) }}
+            </div>
+            <div class="stat-desc mt-1">Diesen Monat</div>
+          </div>
+          
+          <!-- Was übrig ist (Bilanz) -->
+          <div class="stat border-l border-slate-50">
+            <div class="stat-title text-xs font-bold uppercase tracking-wider">Übrig</div>
+            <div class="stat-value text-slate-900 text-2xl" :class="transactionStore.balance < 0 ? 'text-error' : 'text-success'">
+              {{ formatCurrency(transactionStore.balance, transactionStore.settings.currency) }}
+            </div>
+            <div class="stat-desc mt-1 italic">Vom Lohn</div>
+          </div>
+      
+        </div>
+      </section>
       
       <!-- Liste -->
       <div v-if="transactionStore.transactions.length === 0" class="text-center py-12 bg-white/50 rounded-3xl border-2 border-dashed border-slate-200">
