@@ -1,19 +1,24 @@
 <script setup>
-import { ref, reactive } from 'vue';
+import { reactive, onMounted, ref } from 'vue';
 import { transactionStore } from '../store/transactionStore.js';
 import { toCents } from '../utils/currencyHelper.js';
 
 const emit = defineEmits(['close']);
+const amountInput = ref(null);
 
-// Lokaler State für das Formular
 const form = reactive({
   amount: '',
   description: '',
-  type: 'expense',
+  type: 'expense', // Standard: Ausgabe
   paymentMethod: 'cash'
 });
 
-const submit = () => {
+// Fokus direkt auf das Betragsfeld beim Öffnen
+onMounted(() => {
+  amountInput.value?.focus();
+});
+
+const save = () => {
   if (!form.amount || !form.description) return;
 
   transactionStore.addTransaction({
@@ -23,51 +28,55 @@ const submit = () => {
     paymentMethod: form.paymentMethod
   });
 
-  // Formular zurücksetzen
-  form.amount = '';
-  form.description = '';
   emit('close');
 };
 </script>
 
 <template>
-  <div class="bg-white p-6 rounded-3xl shadow-xl border border-black/5">
-    <div class="flex gap-4 mb-6">
+  <!-- Card-Design für das Formular -->
+  <div class="bg-white p-6 rounded-3xl shadow-2xl border border-black/5 w-full max-w-md mx-auto">
+    <div class="flex gap-2 mb-6 p-1 bg-slate-100 rounded-2xl">
       <button 
         @click="form.type = 'expense'"
-        :class="form.type === 'expense' ? 'btn-error' : 'btn-ghost'"
-        class="btn flex-1 rounded-2xl"
+        :class="form.type === 'expense' ? 'bg-white shadow-sm text-error' : 'text-slate-500'"
+        class="flex-1 py-2 rounded-xl font-bold transition-all"
       >
         Ausgabe
       </button>
       <button 
         @click="form.type = 'income'"
-        :class="form.type === 'income' ? 'btn-success' : 'btn-ghost'"
-        class="btn flex-1 rounded-2xl"
+        :class="form.type === 'income' ? 'bg-white shadow-sm text-success' : 'text-slate-500'"
+        class="flex-1 py-2 rounded-xl font-bold transition-all"
       >
         Einnahme
       </button>
     </div>
 
-    <div class="form-control w-full space-y-4">
-      <input 
-        v-model="form.amount" 
-        type="number" 
-        step="0.01" 
-        placeholder="0,00 €" 
-        class="input input-bordered input-lg w-full text-center text-2xl font-bold rounded-2xl" 
-      />
+    <div class="space-y-4">
+      <!-- Betrag mit decimal inputmode für die mobile Tastatur -->
+      <div class="text-center">
+        <input 
+          ref="amountInput"
+          v-model="form.amount"
+          type="number"
+          inputmode="decimal"
+          placeholder="0.00"
+          class="text-5xl font-black text-center w-full bg-transparent outline-none text-primary"
+        />
+        <p class="text-xs opacity-40 mt-1 uppercase tracking-widest font-bold">Euro</p>
+      </div>
 
       <input 
-        v-model="form.description" 
-        type="text" 
-        placeholder="Was hast du gekauft?" 
-        class="input input-bordered w-full rounded-2xl" 
+        v-model="form.description"
+        type="text"
+        placeholder="Wofür?"
+        class="input input-bordered w-full rounded-2xl bg-slate-50 border-none focus:ring-2 ring-primary"
       />
 
-      <button @click="submit" class="btn btn-primary btn-block rounded-2xl text-lg">
-        Speichern
-      </button>
+      <div class="grid grid-cols-2 gap-2">
+        <button @click="emit('close')" class="btn btn-ghost rounded-2xl">Abbrechen</button>
+        <button @click="save" class="btn btn-primary rounded-2xl">Speichern</button>
+      </div>
     </div>
   </div>
 </template>

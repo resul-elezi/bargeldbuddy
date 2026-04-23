@@ -1,74 +1,59 @@
 <script setup>
-import { ref } from 'vue'; // ref hinzufügen
+import { ref } from 'vue';
 import { transactionStore } from './store/transactionStore.js';
 import { formatCurrency } from './utils/currencyHelper.js';
-import TransactionForm from './components/TransactionForm.vue'; // Importieren
+import TransactionForm from './components/TransactionForm.vue';
 
-const showForm = ref(false);
-
-// Eine kleine Test-Funktion, um zu sehen, ob der Store & LocalStorage arbeiten
-const addTestEntry = () => {
-  transactionStore.addTransaction({
-    amount: 1550, // 15,50 €
-    type: 'expense',
-    description: 'Test-Kauf (Bäcker)',
-    paymentMethod: 'cash'
-  });
-};
+const isFormOpen = ref(false);
 </script>
 
 <template>
-  <div class="min-h-screen bg-base-100 p-4 font-sans text-slate-800">
+  <div class="min-h-screen bg-base-100 p-4 pb-24"> <!-- pb-24 für Platz unten -->
     
-    <header class="mb-8 mt-4 text-center">
-      <h1 class="text-3xl font-bold tracking-tight text-primary">BargeldBuddy</h1>
-      <p class="text-sm opacity-70">So einfach wie Papier.</p>
+    <header class="py-8 text-center">
+      <h1 class="text-4xl font-black tracking-tight text-slate-900">Bargeld<span class="text-primary">Buddy</span></h1>
+      <div class="badge badge-ghost font-mono mt-1 opacity-50">v0.1 MVP</div>
     </header>
 
-    <main class="mx-auto max-w-md">
-      <div class="flex justify-center mb-8">
-        <button 
-          v-if="!showForm"
-          @click="showForm = true" 
-          class="btn btn-primary btn-circle btn-lg shadow-2xl fixed bottom-8 right-8 z-50 text-2xl"
-        >
-          +
-        </button>
-      </div>
+    <main class="max-w-md mx-auto space-y-6">
+      <h2 class="text-sm font-black uppercase tracking-widest text-slate-400 px-1">Letzte Buchungen</h2>
       
-      <div v-if="showForm" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-4">
-        <div class="w-full max-w-md">
-          <TransactionForm @close="showForm = false" />
-          <button @click="showForm = false" class="btn btn-ghost btn-block mt-2 text-white">Abbrechen</button>
-        </div>
+      <!-- Liste -->
+      <div v-if="transactionStore.transactions.length === 0" class="text-center py-12 bg-white/50 rounded-3xl border-2 border-dashed border-slate-200">
+         <p class="opacity-40 italic">Noch nichts notiert...</p>
       </div>
 
       <div class="space-y-3">
-        <h2 class="text-lg font-semibold px-1">Letzte Buchungen</h2>
-        
-        <div v-if="transactionStore.transactions.length === 0" class="text-center py-10 opacity-50 italic">
-          Noch keine Einträge vorhanden.
-        </div>
-
         <div 
           v-for="t in transactionStore.transactions" 
-          :key="t.id" 
-          class="flex items-center justify-between bg-white p-4 rounded-2xl shadow-sm border border-black/5"
+          :key="t.id"
+          class="flex items-center justify-between bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition-shadow"
         >
           <div>
-            <p class="font-medium">{{ t.description }}</p>
-            <p class="text-xs opacity-50">{{ new Date(t.timestamp).toLocaleTimeString() }} Uhr</p>
+            <p class="font-bold text-slate-800">{{ t.description }}</p>
+            <p class="text-xs opacity-40">{{ new Date(t.timestamp).toLocaleDateString() }}</p>
           </div>
-          <span :class="t.type === 'expense' ? 'text-error' : 'text-success'" class="font-bold text-lg">
-            {{ t.type === 'expense' ? '-' : '+' }} {{ formatCurrency(t.amount) }}
-          </span>
+          <div class="text-right">
+            <p :class="t.type === 'expense' ? 'text-red-500' : 'text-green-500'" class="font-black text-lg">
+              {{ t.type === 'expense' ? '-' : '+' }} {{ formatCurrency(t.amount) }}
+            </p>
+          </div>
         </div>
       </div>
     </main>
 
+    <!-- Floating Action Button -->
+    <button 
+      @click="isFormOpen = true"
+      class="fixed bottom-8 right-8 btn btn-primary btn-circle btn-lg shadow-2xl text-2xl z-40"
+    >
+      +
+    </button>
+
+    <!-- Modal-Overlay -->
+    <div v-if="isFormOpen" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-50 flex items-end sm:items-center p-4">
+      <TransactionForm @close="isFormOpen = false" />
+    </div>
+
   </div>
 </template>
-
-<style>
-/* Hier brauchen wir aktuell kein extra CSS, da alles über Tailwind & style.css kommt */
-</style>
