@@ -1,18 +1,17 @@
 @import "tailwindcss";
 
-@plugin "daisyui" {
-  themes: light; 
-}
+/* Direkter Import der CSS-Datei umgeht den ESM-Fehler von Vite 8 */
+@import "../node_modules/daisyui/daisyui.css";
 
 @theme {
   --color-app-bg: #F9F7F2;
   --color-base-100: #F9F7F2;
-  --color-primary: #22c55e; 
+  --color-primary: #22c55e;
 }
 
 body {
   background-color: var(--color-app-bg);
   min-height: 100vh;
-  /* Sorgt für eine saubere Schriftart, die modern wirkt */
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  margin: 0;
+  font-family: sans-serif;
 }
