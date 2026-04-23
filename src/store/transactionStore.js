@@ -56,6 +56,11 @@ export const transactionStore = reactive({
   // Methode: Eintrag löschen (für später wichtig)
   deleteTransaction(id) {
     this.transactions = this.transactions.filter(t => t.id !== id);
+  },
+  clearAllTransactions() {
+    if (confirm('Möchtest du wirklich alle Buchungen löschen? Dies kann nicht rückgängig gemacht werden.')) {
+      this.transactions = [];
+    }
   }
 });
 
