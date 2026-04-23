@@ -12,6 +12,17 @@ export const transactionStore = reactive({
   // Unsere Liste mit allen Buchungen
   transactions: savedData,
 
+  // Neue Settings-Sektion
+  settings: JSON.parse(localStorage.getItem('bb_settings') || JSON.stringify({
+    currency: 'CHF'
+  })),
+
+  // Methode zum Ändern der Währung
+  setCurrency(newSymbol) {
+    this.settings.currency = newSymbol;
+    localStorage.setItem('bb_settings', JSON.stringify(this.settings));
+  },
+
   // Methode: Neuen Eintrag hinzufügen
   addTransaction(data) {
     const newEntry = {
@@ -20,7 +31,8 @@ export const transactionStore = reactive({
       amount: data.amount,       // Erwartet Integer (Cents)
       type: data.type,           // 'income' oder 'expense'
       description: data.description,
-      paymentMethod: data.paymentMethod || 'cash'
+      paymentMethod: data.paymentMethod || 'cash',
+      currency: this.settings.currency
     };
     
     // Neue Einträge kommen nach oben (unshift statt push)

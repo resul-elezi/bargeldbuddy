@@ -3,18 +3,29 @@
  */
 export const toCents = (amount) => {
   if (!amount) return 0;
-  // Ersetzt Komma durch Punkt für die Berechnung
-  return Math.round(parseFloat(amount.toString().replace(',', '.')) * 100);
+  const normalized = amount.toString().replace(',', '.');
+  return Math.round(parseFloat(normalized) * 100);
 };
 
 /**
  * Formatiert Cents zurück in die lokale Währung
  * @param {number} cents 
- * @param {string} currency - 'EUR', 'CHF', etc.
+ * @param {string} currency - 'CHF' oder 'EUR'
  */
 export const formatCurrency = (cents, currency = 'CHF') => {
-  return new Intl.NumberFormat('de-CH', { // 'de-CH' sorgt für Schweizer Formatierung (z.B. 1'000.00)
-    style: 'currency',
-    currency: currency,
-  }).format(cents / 100);
+  // de-CH für Franken (1'250.00), de-DE für Euro (1.250,00)
+  const locale = currency === 'CHF' ? 'de-CH' : 'de-DE';
+  
+  try {
+    return new Intl.NumberFormat(locale, {
+      style: 'currency',
+      currency: currency,
+    }).format(cents / 100);
+  } catch (e) {
+    // Falls mal eine ungültige Währung reinkommt, fallen wir auf CHF zurück
+    return new Intl.NumberFormat('de-CH', {
+      style: 'currency',
+      currency: 'CHF',
+    }).format(cents / 100);
+  }
 };

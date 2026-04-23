@@ -13,6 +13,22 @@ const isFormOpen = ref(false);
     <header class="py-8 text-center">
       <h1 class="text-4xl font-black tracking-tight text-slate-900">Bargeld<span class="text-primary">Buddy</span></h1>
       <div class="badge badge-ghost font-mono mt-1 opacity-50">v0.1 MVP</div>
+      <div class="flex justify-center gap-2 mt-2">
+        <button 
+          @click="transactionStore.setCurrency('CHF')" 
+          :class="transactionStore.settings.currency === 'CHF' ? 'badge-primary' : 'badge-ghost'"
+          class="badge cursor-pointer"
+        >
+          CHF
+        </button>
+        <button 
+          @click="transactionStore.setCurrency('EUR')" 
+          :class="transactionStore.settings.currency === 'EUR' ? 'badge-primary' : 'badge-ghost'"
+          class="badge cursor-pointer"
+        >
+          EUR
+        </button>
+      </div>
     </header>
 
     <main class="max-w-md mx-auto space-y-6">
@@ -35,7 +51,7 @@ const isFormOpen = ref(false);
           </div>
           <div class="text-right">
             <p :class="t.type === 'expense' ? 'text-red-500' : 'text-green-500'" class="font-black text-lg">
-              {{ t.type === 'expense' ? '-' : '+' }} {{ formatCurrency(t.amount) }}
+              {{ t.type === 'expense' ? '-' : '+' }} {{ formatCurrency(t.amount, t.currency || transactionStore.settings.currency) }}
             </p>
           </div>
         </div>
