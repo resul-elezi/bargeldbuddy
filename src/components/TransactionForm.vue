@@ -9,8 +9,9 @@ const amountInput = ref(null);
 const form = reactive({
   amount: '',
   description: '',
-  type: 'expense', // Standard: Ausgabe
-  paymentMethod: 'cash'
+  type: 'expense',
+  paymentMethod: 'cash', // 'cash', 'card', 'other'
+  date: new Date().toISOString().substr(0, 10) // Heute als Standard
 });
 
 // Fokus direkt auf das Betragsfeld beim Öffnen
@@ -25,7 +26,8 @@ const save = () => {
     amount: toCents(form.amount),
     type: form.type,
     description: form.description,
-    paymentMethod: form.paymentMethod
+    paymentMethod: form.paymentMethod,
+    date: form.date // Wir geben das gewählte Datum mit
   });
 
   emit('close');
