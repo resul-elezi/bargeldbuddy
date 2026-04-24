@@ -1,28 +1,38 @@
 @import "tailwindcss";
 
-/* 1. DaisyUI direkt laden (umgeht den Plugin-Fehler) */
+/* 1. DaisyUI laden */
 @import "../node_modules/daisyui/daisyui.css";
 
 @theme {
-  /* 2. Tailwind Farben definieren */
   --color-primary: #22c55e;
   --color-primary-content: #ffffff;
-  
-  --color-app-bg: #F9F7F2;
   --color-base-100: #F9F7F2;
 }
 
-/* 3. DaisyUI "zwingen", unsere Farben zu nutzen (The Power Move) */
-:root, [data-theme] {
-  /* DaisyUI v4/v5 nutzt intern diese Variablen */
-  --p: #22c55e !important;
-  --primary: #22c55e !important;
-  --pc: #ffffff !important;
-  --primary-content: #ffffff !important;
+/* 2. Absolute Gewalt über die Farben */
+@layer base {
+  :root, [data-theme], html {
+    /* DaisyUI v4/v5 interne Farb-Mappings */
+    --p: #22c55e !important;
+    --primary: #22c55e !important;
+    --pc: #ffffff !important;
+    --primary-content: #ffffff !important;
+    
+    /* Hintergrund-Farben */
+    --b1: #F9F7F2 !important;
+    --base-100: #F9F7F2 !important;
+  }
+
+  /* 3. Manueller Override für alle DaisyUI Primary Buttons */
+  .btn-primary {
+    background-color: #22c55e !important;
+    border-color: #22c55e !important;
+    color: #ffffff !important;
+  }
   
-  /* Hintergrundfarben */
-  --b1: #F9F7F2 !important;
-  --base-100: #F9F7F2 !important;
+  .text-primary {
+    color: #22c55e !important;
+  }
 }
 
 /* 4. Globaler Background */
