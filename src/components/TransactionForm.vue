@@ -36,7 +36,8 @@ const save = () => {
 
 <template>
   <!-- Card-Design für das Formular -->
-  <div class="bg-white p-6 rounded-3xl shadow-2xl border border-black/5 w-full max-w-md mx-auto">
+  <div class="bg-white p-6 rounded-t-3xl sm:rounded-3xl shadow-2xl border border-black/5 w-full max-w-md mx-auto">
+    <!-- Einnahme/Ausgabe Toggle -->
     <div class="flex gap-2 mb-6 p-1 bg-slate-100 rounded-2xl">
       <button 
         @click="form.type = 'expense'"
@@ -54,7 +55,7 @@ const save = () => {
       </button>
     </div>
 
-    <div class="space-y-4">
+    <div class="space-y-5">
       <!-- Betrag mit decimal inputmode für die mobile Tastatur -->
       <div class="text-center">
         <input 
@@ -65,19 +66,39 @@ const save = () => {
           placeholder="0.00"
           class="text-5xl font-black text-center w-full bg-transparent outline-none text-primary"
         />
-        <p class="text-xs opacity-40 mt-1 uppercase tracking-widest font-bold">{{ transactionStore.settings.currency === 'CHF' ? 'CHF' : 'Euro' }}</p>
+        <p class="text-xs opacity-40 mt-1 uppercase tracking-widest font-bold">
+          {{ transactionStore.settings.currency }}
+          <!-- {{ transactionStore.settings.currency === 'CHF' ? 'CHF' : 'Euro' }} -->
+        </p>
       </div>
-
+      <!-- Beschreibung -->
       <input 
         v-model="form.description"
         type="text"
-        placeholder="Wofür?"
-        class="input input-bordered w-full rounded-2xl bg-slate-50 border-none focus:ring-2 ring-primary"
+        placeholder="Wofür? (z.B. Einkauf, Miete...)"
+        class="input input-bordered w-full rounded-2xl bg-slate-50 border-none ring-primary"
       />
 
+      <!-- NEU: Datum -->
+      <div class="flex flex-col gap-1">
+        <label class="text-[10px] font-bold uppercase opacity-40 ml-2">Datum</label>
+        <input v-model="form.date" type="date" class="input input-bordered w-full rounded-2xl bg-slate-50 border-none" />
+      </div>
+
+      <!-- NEU: Zahlungsart -->
+      <div class="flex flex-col gap-1">
+        <label class="text-[10px] font-bold uppercase opacity-40 ml-2">Zahlungsart</label>
+        <div class="grid grid-cols-3 gap-2">
+          <button @click="form.paymentMethod = 'cash'" :class="form.paymentMethod === 'cash' ? 'bg-primary text-white' : 'bg-slate-100 text-slate-500'" class="py-2 rounded-xl text-xs font-bold transition-all">Bar</button>
+          <button @click="form.paymentMethod = 'card'" :class="form.paymentMethod === 'card' ? 'bg-primary text-white' : 'bg-slate-100 text-slate-500'" class="py-2 rounded-xl text-xs font-bold transition-all">Karte</button>
+          <button @click="form.paymentMethod = 'other'" :class="form.paymentMethod === 'other' ? 'bg-primary text-white' : 'bg-slate-100 text-slate-500'" class="py-2 rounded-xl text-xs font-bold transition-all">Andere</button>
+        </div>
+      </div>
+
+      <!-- Buttons -->
       <div class="grid grid-cols-2 gap-2">
         <button @click="emit('close')" class="btn btn-ghost rounded-2xl">Abbrechen</button>
-        <button @click="save" class="btn btn-primary rounded-2xl">Speichern</button>
+        <button @click="save" class="btn btn-primary rounded-2xl text-white">Speichern</button>
       </div>
     </div>
   </div>
