@@ -1,17 +1,34 @@
 @import "tailwindcss";
 
-/* Direkter Import der CSS-Datei umgeht den ESM-Fehler von Vite 8 */
+/* 1. DaisyUI direkt laden (umgeht den Plugin-Fehler) */
 @import "../node_modules/daisyui/daisyui.css";
 
 @theme {
+  /* 2. Tailwind Farben definieren */
+  --color-primary: #22c55e;
+  --color-primary-content: #ffffff;
+  
   --color-app-bg: #F9F7F2;
   --color-base-100: #F9F7F2;
-  --color-primary: #22c55e;
 }
 
+/* 3. DaisyUI "zwingen", unsere Farben zu nutzen (The Power Move) */
+:root, [data-theme] {
+  /* DaisyUI v4/v5 nutzt intern diese Variablen */
+  --p: #22c55e !important;
+  --primary: #22c55e !important;
+  --pc: #ffffff !important;
+  --primary-content: #ffffff !important;
+  
+  /* Hintergrundfarben */
+  --b1: #F9F7F2 !important;
+  --base-100: #F9F7F2 !important;
+}
+
+/* 4. Globaler Background */
 body {
-  background-color: var(--color-app-bg);
-  min-height: 100vh;
+  background-color: #F9F7F2;
+  color: #1e293b;
   margin: 0;
   font-family: sans-serif;
 }
