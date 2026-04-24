@@ -41,16 +41,17 @@ export const transactionStore = reactive({
   addTransaction(data) {
     const newEntry = {
       id: uuidv4(),
-      timestamp: Date.now(),
-      amount: data.amount,       // Erwartet Integer (Cents)
-      type: data.type,           // 'income' oder 'expense'
+      // Wir nehmen das Datum vom User oder "jetzt" als Fallback
+      timestamp: data.date ? new Date(data.date).getTime() : Date.now(),
+      amount: data.amount,
+      type: data.type,
       description: data.description,
-      paymentMethod: data.paymentMethod || 'cash',
-      currency: this.settings.currency
+      paymentMethod: data.paymentMethod, // Jetzt aktiv genutzt!
+      currency: this.settings.currency 
     };
-    
-    // Neue Einträge kommen nach oben (unshift statt push)
     this.transactions.unshift(newEntry);
+    // Optional: Nach Datum sortieren, falls User ein Datum in der Vergangenheit wählt
+    this.transactions.sort((a, b) => b.timestamp - a.timestamp);
   },
 
   // Methode: Eintrag löschen (für später wichtig)

@@ -69,10 +69,18 @@ const isFormOpen = ref(false);
           :key="t.id"
           class="flex items-center justify-between bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition-shadow"
         >
-          <div>
-            <p class="font-bold text-slate-800">{{ t.description }}</p>
-            <p class="text-xs opacity-40">{{ new Date(t.timestamp).toLocaleDateString() }}</p>
+        <div class="flex-1 min-w-0 pr-2">
+          <p class="font-bold text-slate-800 truncate text-sm sm:text-base">{{ t.description }}</p>
+          <div class="flex items-center gap-2">
+            <p class="text-[10px] opacity-40 uppercase font-medium">
+              {{ new Date(t.timestamp).toLocaleDateString() }}
+            </p>
+            <span class="text-[9px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-500 font-bold uppercase">
+              {{ t.paymentMethod === 'cash' ? 'Bar' : t.paymentMethod === 'card' ? 'Karte' : 'Andere' }}
+            </span>
           </div>
+        </div>
+
           <div class="text-right">
             <p :class="t.type === 'expense' ? 'text-red-500' : 'text-green-500'" class="font-black text-lg">
               {{ t.type === 'expense' ? '-' : '+' }} {{ formatCurrency(t.amount, t.currency || transactionStore.settings.currency) }}
