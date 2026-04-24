@@ -76,13 +76,13 @@ const save = () => {
         v-model="form.description"
         type="text"
         placeholder="Wofür? (z.B. Einkauf, Miete...)"
-        class="input input-bordered w-full rounded-2xl bg-slate-50 border-none ring-primary"
+        class="input input-bordered w-full rounded-2xl bg-slate-50 border-none outline-primary"
       />
 
       <!-- NEU: Datum -->
       <div class="flex flex-col gap-1">
         <label class="text-[10px] font-bold uppercase opacity-40 ml-2">Datum</label>
-        <input v-model="form.date" type="date" class="input input-bordered w-full rounded-2xl bg-slate-50 border-none" />
+        <input v-model="form.date" type="date" class="input input-bordered w-full rounded-2xl bg-slate-50 border-none outline-primary" />
       </div>
 
       <!-- NEU: Zahlungsart -->
