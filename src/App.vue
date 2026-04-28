@@ -35,24 +35,22 @@ const isFormOpen = ref(false);
       <h2 class="text-sm font-black uppercase tracking-widest text-slate-400 px-1">Letzte Buchungen</h2>
 
       <section class="max-w-md mx-auto mb-8">
-        <div class="stats shadow-sm w-full bg-white rounded-3xl border border-black/5 overflow-hidden">
+        <div class="stats">
           
-          <!-- Gesamter Verbrauch (Ausgaben) -->
           <div class="stat">
-            <div class="stat-title text-xs font-bold uppercase tracking-wider">Verbrauch</div>
-            <div class="stat-value text-error text-xl">
+            <div class="stat-title">Verbrauch</div>
+            <div class="stat-value text-error">
               {{ formatCurrency(transactionStore.totalExpenses, transactionStore.settings.currency) }}
             </div>
-            <div class="stat-desc mt-1">Diesen Monat</div>
+            <div class="stat-desc">Diesen Monat</div>
           </div>
           
-          <!-- Was übrig ist (Bilanz) -->
-          <div class="stat border-l border-slate-50">
-            <div class="stat-title text-xs font-bold uppercase tracking-wider">Übrig</div>
-            <div class="stat-value text-slate-900 text-lg" :class="transactionStore.balance < 0 ? 'text-error' : 'text-success'">
+          <div class="stat">
+            <div class="stat-title">Übrig</div>
+            <div class="stat-value" :class="transactionStore.balance < 0 ? 'text-error' : 'text-success'">
               {{ formatCurrency(transactionStore.balance, transactionStore.settings.currency) }}
             </div>
-            <div class="stat-desc mt-1 italic">Vom Lohn</div>
+            <div class="stat-desc italic">Vom Lohn</div>
           </div>
       
         </div>
