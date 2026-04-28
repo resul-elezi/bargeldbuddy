@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import { transactionStore } from './store/transactionStore.js';
 import { formatCurrency } from './utils/currencyHelper.js';
 import TransactionForm from './components/TransactionForm.vue';
+import { FwbBadge } from 'flowbite-vue';
 
 const isFormOpen = ref(false);
 </script>
@@ -12,7 +13,8 @@ const isFormOpen = ref(false);
     
     <header class="py-8 text-center">
       <h1 class="text-4xl font-black tracking-tight text-slate-900">Bargeld<span class="text-primary">Buddy</span></h1>
-      <div class="badge badge-ghost font-mono mt-1 opacity-50">v0.1 MVP</div>
+      <!-- <div class="badge badge-ghost font-mono mt-1 opacity-50">v0.1 MVP</div> -->
+      <fwb-badge type="dark">v0.1 MVP</fwb-badge>
       <div class="flex justify-center gap-2 mt-2">
         <button 
           @click="transactionStore.setCurrency('CHF')" 
