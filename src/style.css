@@ -6,6 +6,8 @@
 
   --color-app-bg: #F9F7F2;
   --color-base-100: #F9F7F2;
+  /* --color-base-200: var(--color-base-300); */
+  --color-base-200: #edebe6;
   --color-primary: #1fb155;
   --color-primary-content: var(--color-white);
   --color-base-content: var(--color-slate-900);
