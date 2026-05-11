@@ -18,10 +18,10 @@
   --color-primary: #1a9b4e;
   --color-primary-content: var(--color-white);
   --color-base-content: #2e2928;
-  --color-bookings-heading: #979494;
-  --text-red: #db201a;
-  --text-alert: #e14b45;
-  --text-success: #46ad6e;
+  --color-bookings-heading: #8c8989;
+  --text-red: #ef3727;
+  --text-alert: #f15547;
+  --text-success: #25a057;
 }
 
 body {

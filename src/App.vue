@@ -33,7 +33,7 @@ const isFormOpen = ref(false);
     </header>
 
     <main class="max-w-md mx-auto space-y-6">
-      <h2 class="text-sm font-black uppercase tracking-widest text-slate-400 px-1">Letzte Buchungen</h2>
+      <h2 class="text-sm font-black uppercase tracking-widest text-(--color-bookings-heading) px-1">Letzte Buchungen</h2>
 
       <section class="max-w-md mx-auto mb-8">
         <div class="stats shadow-sm w-full bg-(--color-base-100) rounded-3xl border border-black/5 overflow-hidden">
@@ -41,7 +41,7 @@ const isFormOpen = ref(false);
           <!-- Gesamter Verbrauch (Ausgaben) -->
           <div class="stat">
             <div class="stat-title text-xs font-bold uppercase tracking-wider">Verbrauch</div>
-            <div class="stat-value text-error text-2xl">
+            <div class="stat-value text-(--text-alert) text-2xl">
               {{ formatCurrency(transactionStore.totalExpenses, transactionStore.settings.currency) }}
             </div>
             <div class="stat-desc mt-1">Diesen Monat</div>
@@ -50,7 +50,7 @@ const isFormOpen = ref(false);
           <!-- Was übrig ist (Bilanz) -->
           <div class="stat border-l border-slate-50">
             <div class="stat-title text-xs font-bold uppercase tracking-wider">Übrig</div>
-            <div class="stat-value text-2xl" :class="transactionStore.balance < 0 ? 'text-error' : 'text-success'">
+            <div class="stat-value text-2xl" :class="transactionStore.balance < 0 ? 'text-(--text-alert)' : 'text-(--text-success)'">
                     {{ formatCurrency(transactionStore.balance, transactionStore.settings.currency) }}
                   </div>
             <div class="stat-desc mt-1 italic">Vom Lohn</div>
@@ -77,14 +77,14 @@ const isFormOpen = ref(false);
             <p class="text-[10px] opacity-40 uppercase font-medium">
               {{ new Date(t.timestamp).toLocaleDateString() }}
             </p>
-            <span class="text-[9px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-500 font-bold uppercase">
+            <span class="text-[9px] px-1.5 py-0.5 rounded bg-(--color-base-200) text-(--color-base-content) font-bold uppercase">
               {{ t.paymentMethod === 'cash' ? 'Bar' : t.paymentMethod === 'card' ? 'Karte' : 'Andere' }}
             </span>
           </div>
         </div>
 
           <div class="text-right">
-            <p :class="t.type === 'expense' ? 'text-red-500' : 'text-green-500'" class="font-black text-lg">
+            <p :class="t.type === 'expense' ? 'text-(--text-red)' : 'text-(--text-success)'" class="font-black text-lg">
               {{ t.type === 'expense' ? '-' : '+' }} {{ formatCurrency(t.amount, t.currency || transactionStore.settings.currency) }}
             </p>
           </div>
