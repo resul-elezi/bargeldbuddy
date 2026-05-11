@@ -4,13 +4,23 @@
   name: "light";
   default: true; /* set as default */
 
+  /* --color-app-bg: #F9F7F2;
+  --color-base-100: #F9F7F2;
+  --color-base-200: #edebe6;
+  --bg-card: #f7f5f0;
+  --color-primary: #1fb155;
+  --color-primary-content: var(--color-white);
+  --color-base-content: var(--color-slate-900); */
   --color-app-bg: #F9F7F2;
   --color-base-100: #F9F7F2;
   --color-base-200: #edebe6;
-  --bg-card: #f3f1ec;
-  --color-primary: #1fb155;
+  --bg-card: #f5f3ee;
+  --color-primary: #1a9b4e;
   --color-primary-content: var(--color-white);
-  --color-base-content: var(--color-slate-900);
+  --color-base-content: #2e2928;
+  --text-red: #db201a;
+  --text-alert: #e14b45;
+  --text-success: #46ad6e;
 }
 
 body {
