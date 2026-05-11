@@ -1,2 +1,14 @@
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui"; /* Versuche es mit diesem direkten Import */
+
+@theme {
+  --color-app-bg: #F9F7F2;
+  --color-base-100: #F9F7F2;
+  --color-primary: #22c55e;
+}
+
+body {
+  background-color: var(--color-app-bg);
+  min-height: 100vh;
+  margin: 0;
+}
