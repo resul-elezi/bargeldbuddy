@@ -12,8 +12,7 @@ const isFormOpen = ref(false);
     
     <header class="py-8 text-center">
       <h1 class="text-4xl font-black tracking-tight text-slate-900">Bargeld<span class="text-primary">Buddy</span></h1>
-      <!-- <div class="badge badge-ghost font-mono mt-1 opacity-50">v0.1 MVP</div> -->
-      <div class="badge badge-soft badge-secondary">v0.1 MVP</div>
+      <div class="badge badge-ghost font-mono mt-1 opacity-50">v0.1 MVP</div>
       
       <div class="flex justify-center gap-2 mt-2">
         <button 
@@ -37,26 +36,29 @@ const isFormOpen = ref(false);
       <h2 class="text-sm font-black uppercase tracking-widest text-slate-400 px-1">Letzte Buchungen</h2>
 
       <section class="max-w-md mx-auto mb-8">
-        <div class="stats">
-          
-          <div class="stat">
-            <div class="stat-title">Verbrauch</div>
-            <div class="stat-value text-error">
-              {{ formatCurrency(transactionStore.totalExpenses, transactionStore.settings.currency) }}
-            </div>
-            <div class="stat-desc">Diesen Monat</div>
-          </div>
-          
-          <div class="stat">
-            <div class="stat-title">Übrig</div>
-            <div class="stat-value" :class="transactionStore.balance < 0 ? 'text-error' : 'text-success'">
+  <div class="stats shadow-sm w-full bg-white rounded-3xl border border-black/5 overflow-hidden">
+    
+    <!-- Gesamter Verbrauch (Ausgaben) -->
+    <div class="stat">
+      <div class="stat-title text-xs font-bold uppercase tracking-wider">Verbrauch</div>
+      <div class="stat-value text-error text-2xl">
+        {{ formatCurrency(transactionStore.totalExpenses, transactionStore.settings.currency) }}
+      </div>
+      <div class="stat-desc mt-1">Diesen Monat</div>
+    </div>
+    
+    <!-- Was übrig ist (Bilanz) -->
+    <div class="stat border-l border-slate-50">
+      <div class="stat-title text-xs font-bold uppercase tracking-wider">Übrig</div>
+      <div class="stat-value text-2xl" :class="transactionStore.balance < 0 ? 'text-error' : 'text-success'">
               {{ formatCurrency(transactionStore.balance, transactionStore.settings.currency) }}
             </div>
-            <div class="stat-desc italic">Vom Lohn</div>
-          </div>
+      <div class="stat-desc mt-1 italic">Vom Lohn</div>
+    </div>
+
+  </div>
+</section>
       
-        </div>
-      </section>
       
       <!-- Liste -->
       <div v-if="transactionStore.transactions.length === 0" class="text-center py-12 bg-white/50 rounded-3xl border-2 border-dashed border-slate-200">
