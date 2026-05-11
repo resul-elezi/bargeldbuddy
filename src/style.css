@@ -15,13 +15,14 @@
   --color-base-100: #fcfbf9;
   --color-base-200: #f5f3ee;
   /* --bg-card: #f8f6f4; */
-  --color-primary: #1a9b4e;
+  /* --color-primary: #1a9b4e; */
+  --color-primary: #00a140;
   --color-primary-content: var(--color-white);
   --color-base-content: #2e2928;
   --color-bookings-heading: #8c8989;
   --text-red: #ef3727;
   --text-alert: #f14f41;
-  --text-success: #25a057;
+  --text-success: #00c950;
 }
 
 body {
