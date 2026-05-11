@@ -4,18 +4,9 @@
   name: "light";
   default: true; /* set as default */
 
-  /* --color-app-bg: #F9F7F2;
-  --color-base-100: #F9F7F2;
-  --color-base-200: #edebe6;
-  --bg-card: #f7f5f0;
-  --color-primary: #1fb155;
-  --color-primary-content: var(--color-white);
-  --color-base-content: var(--color-slate-900); */
   --color-app-bg: #f9f7f4;
   --color-base-100: #fcfbf9;
   --color-base-200: #f5f3ee;
-  /* --bg-card: #f8f6f4; */
-  /* --color-primary: #1a9b4e; */
   --color-primary: #00a140;
   --color-primary-content: var(--color-white);
   --color-base-content: #2e2928;
