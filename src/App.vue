@@ -11,7 +11,7 @@ const isFormOpen = ref(false);
   <div class="min-h-screen bg-base-100 p-4 pb-24"> <!-- pb-24 für Platz unten -->
     
     <header class="py-8 text-center">
-      <h1 class="text-4xl font-black tracking-tight text-slate-900">Bargeld<span class="text-primary">Buddy</span></h1>
+      <h1 class="text-4xl font-black tracking-tight text-(--color-base-content)">Bargeld<span class="text-primary">Buddy</span></h1>
       <div class="badge badge-ghost font-mono mt-1 opacity-50">v0.1 MVP</div>
       
       <div class="flex justify-center gap-2 mt-2">
@@ -69,10 +69,10 @@ const isFormOpen = ref(false);
         <div 
           v-for="t in transactionStore.transactions" 
           :key="t.id"
-          class="flex items-center justify-between bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition-shadow"
+          class="flex items-center justify-between bg-(--color-base-100) p-5 rounded-2xl shadow-sm hover:shadow-md transition-shadow"
         >
         <div class="flex-1 min-w-0 pr-2">
-          <p class="font-bold text-slate-800 truncate text-sm sm:text-base">{{ t.description }}</p>
+          <p class="font-bold text-(--color-base-content) truncate text-sm sm:text-base">{{ t.description }}</p>
           <div class="flex items-center gap-2">
             <p class="text-[10px] opacity-40 uppercase font-medium">
               {{ new Date(t.timestamp).toLocaleDateString() }}
