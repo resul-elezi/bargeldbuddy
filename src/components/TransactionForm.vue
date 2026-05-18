@@ -48,7 +48,7 @@ const save = () => {
       </button>
       <button 
         @click="form.type = 'income'"
-        :class="form.type === 'income' ? 'bg-white shadow-sm text-(--color-primary)' : 'text-(--color-bookings-heading)'"
+        :class="form.type === 'income' ? 'bg-white shadow-sm text-primary' : 'text-(--color-bookings-heading)'"
         class="flex-1 py-2 rounded-xl font-bold transition-all"
       >
         Einnahme
@@ -64,7 +64,7 @@ const save = () => {
           type="number"
           inputmode="decimal"
           placeholder="0.00"
-          class="text-5xl font-black text-center w-full bg-transparent outline-none text-(--color-primary)"
+          class="text-5xl font-black text-center w-full bg-transparent outline-none text-primary"
         />
         <p class="text-xs text-(--color-bookings-heading) mt-1 uppercase tracking-widest font-bold">
           {{ transactionStore.settings.currency }}
@@ -76,22 +76,22 @@ const save = () => {
         v-model="form.description"
         type="text"
         placeholder="Wofür? (z.B. Einkauf, Miete...)"
-        class="input w-full rounded-2xl bg-(--color-base-100) border-none focus:outline-2 outline-(--color-base-content)/20 shadow-none"
+        class="input w-full rounded-2xl bg-(--color-base-100) border-none outline-(--color-base-content)/20 shadow-none"
       />
 
       <!-- NEU: Datum -->
       <div class="flex flex-col gap-1">
         <label class="text-[10px] font-bold uppercase opacity-40 ml-2">Datum</label>
-        <input v-model="form.date" type="date" class="input input-field w-full rounded-2xl bg-(--color-base-100) border-none outline-primary" />
+        <input v-model="form.date" type="date" class="input input-field w-full rounded-2xl bg-(--color-base-100) border-none outline-(--color-base-content)/20 shadow-none" />
       </div>
 
       <!-- NEU: Zahlungsart -->
       <div class="flex flex-col gap-1">
         <label class="text-[10px] font-bold uppercase opacity-40 ml-2">Zahlungsart</label>
         <div class="grid grid-cols-3 gap-2">
-          <button @click="form.paymentMethod = 'cash'" :class="form.paymentMethod === 'cash' ? 'bg-primary text-white' : 'bg-slate-100 text-slate-500'" class="py-2 rounded-xl text-xs font-bold transition-all">Bar</button>
-          <button @click="form.paymentMethod = 'card'" :class="form.paymentMethod === 'card' ? 'bg-primary text-white' : 'bg-slate-100 text-slate-500'" class="py-2 rounded-xl text-xs font-bold transition-all">Karte</button>
-          <button @click="form.paymentMethod = 'other'" :class="form.paymentMethod === 'other' ? 'bg-primary text-white' : 'bg-slate-100 text-slate-500'" class="py-2 rounded-xl text-xs font-bold transition-all">Andere</button>
+          <button @click="form.paymentMethod = 'cash'" :class="form.paymentMethod === 'cash' ? 'bg-primary text-white' : 'bg-(--color-base-100) text-(--color-bookings-heading)'" class="py-2 rounded-xl text-xs font-bold transition-all">Bar</button>
+          <button @click="form.paymentMethod = 'card'" :class="form.paymentMethod === 'card' ? 'bg-primary text-white' : 'bg-(--color-base-100) text-(--color-bookings-heading)'" class="py-2 rounded-xl text-xs font-bold transition-all">Karte</button>
+          <button @click="form.paymentMethod = 'other'" :class="form.paymentMethod === 'other' ? 'bg-primary text-white' : 'bg-(--color-base-100) text-(--color-bookings-heading)'" class="py-2 rounded-xl text-xs font-bold transition-all">Andere</button>
         </div>
       </div>
 
