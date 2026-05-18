@@ -30,6 +30,12 @@ export default defineConfig({
         ]
       }
     })
-  ]
+  ],
+  server: {
+    allowedHosts: [
+      ".trycloudflare.com",
+      ".ngrok-free.app"
+    ]
+  }
 })
 
