@@ -82,7 +82,7 @@ const save = () => {
       <!-- NEU: Datum -->
       <div class="flex flex-col gap-1">
         <label class="text-[10px] font-bold uppercase opacity-40 ml-2">Datum</label>
-        <input v-model="form.date" type="date" class="input-field w-full rounded-2xl bg-slate-50 border-none outline-primary" />
+        <input v-model="form.date" type="date" class="input input-field w-full rounded-2xl bg-(--color-base-100) border-none outline-primary" />
       </div>
 
       <!-- NEU: Zahlungsart -->
