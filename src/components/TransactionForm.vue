@@ -64,7 +64,7 @@ const save = () => {
           type="number"
           inputmode="decimal"
           placeholder="0.00"
-          class="text-5xl font-black text-center w-full bg-transparent outline-none text-primary"
+          class="text-5xl font-black text-center w-full bg-transparent outline-none text-(--color-primary)"
         />
         <p class="text-xs opacity-40 mt-1 uppercase tracking-widest font-bold">
           {{ transactionStore.settings.currency }}
