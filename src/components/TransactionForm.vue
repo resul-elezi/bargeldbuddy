@@ -89,9 +89,9 @@ const save = () => {
       <div class="flex flex-col gap-1">
         <label class="text-[10px] font-bold uppercase opacity-40 ml-2">Zahlungsart</label>
         <div class="grid grid-cols-3 gap-2">
-          <button @click="form.paymentMethod = 'cash'" :class="form.paymentMethod === 'cash' ? 'bg-primary text-white' : 'bg-(--color-base-100) text-(--color-bookings-heading)'" class="py-2 rounded-xl text-xs font-bold transition-all">Bar</button>
-          <button @click="form.paymentMethod = 'card'" :class="form.paymentMethod === 'card' ? 'bg-primary text-white' : 'bg-(--color-base-100) text-(--color-bookings-heading)'" class="py-2 rounded-xl text-xs font-bold transition-all">Karte</button>
-          <button @click="form.paymentMethod = 'other'" :class="form.paymentMethod === 'other' ? 'bg-primary text-white' : 'bg-(--color-base-100) text-(--color-bookings-heading)'" class="py-2 rounded-xl text-xs font-bold transition-all">Andere</button>
+          <button @click="form.paymentMethod = 'cash'" :class="form.paymentMethod === 'cash' ? 'bg-primary text-white' : 'bg-(--color-base-200) text-(--color-base-content)'" class="py-2 rounded-xl text-xs font-bold transition-all">Bar</button>
+          <button @click="form.paymentMethod = 'card'" :class="form.paymentMethod === 'card' ? 'bg-primary text-white' : 'bg-(--color-base-200) text-(--color-base-content)'" class="py-2 rounded-xl text-xs font-bold transition-all">Karte</button>
+          <button @click="form.paymentMethod = 'other'" :class="form.paymentMethod === 'other' ? 'bg-primary text-white' : 'bg-(--color-base-200) text-(--color-base-content)'" class="py-2 rounded-xl text-xs font-bold transition-all">Andere</button>
         </div>
       </div>
 
