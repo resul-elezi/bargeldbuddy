@@ -36,19 +36,19 @@ const save = () => {
 
 <template>
   <!-- Card-Design für das Formular -->
-  <div class="bg-white p-4 sm:p-6 rounded-t-3xl sm:rounded-3xl shadow-2xl border border-black/5 w-full max-w-[21.5rem] sm:max-w-sm mx-auto mb-24 sm:mb-4">
+  <div class="bg-white p-4 sm:p-6 rounded-3xl shadow-2xl border border-black/5 w-full max-w-[21.5rem] sm:max-w-sm mx-auto mb-24 sm:mb-4">
     <!-- Einnahme/Ausgabe Toggle -->
-    <div class="flex gap-2 mb-6 p-1 bg-slate-100 rounded-2xl">
+    <div class="flex gap-2 mb-6 p-1 bg-(--color-base-100) rounded-2xl">
       <button 
         @click="form.type = 'expense'"
-        :class="form.type === 'expense' ? 'bg-white shadow-sm text-error' : 'text-slate-500'"
+        :class="form.type === 'expense' ? 'bg-white shadow-sm text-(--text-alert)' : 'text-(--color-bookings-heading)'"
         class="flex-1 py-2 rounded-xl font-bold transition-all"
       >
         Ausgabe
       </button>
       <button 
         @click="form.type = 'income'"
-        :class="form.type === 'income' ? 'bg-white shadow-sm text-success' : 'text-slate-500'"
+        :class="form.type === 'income' ? 'bg-white shadow-sm text-(--text-success)' : 'text-(--color-bookings-heading)'"
         class="flex-1 py-2 rounded-xl font-bold transition-all"
       >
         Einnahme
