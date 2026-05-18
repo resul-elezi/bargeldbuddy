@@ -76,7 +76,7 @@ const save = () => {
         v-model="form.description"
         type="text"
         placeholder="Wofür? (z.B. Einkauf, Miete...)"
-        class="input w-full rounded-2xl bg-(--color-base-100) border-none focus:outline-2 outline-(--color-base-content)/15 shadow-none"
+        class="input w-full rounded-2xl bg-(--color-base-100) border-none focus:outline-2 outline-(--color-base-content)/20 shadow-none"
       />
 
       <!-- NEU: Datum -->
