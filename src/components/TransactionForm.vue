@@ -48,7 +48,7 @@ const save = () => {
       </button>
       <button 
         @click="form.type = 'income'"
-        :class="form.type === 'income' ? 'bg-white shadow-sm text-(--text-success)' : 'text-(--color-bookings-heading)'"
+        :class="form.type === 'income' ? 'bg-white shadow-sm text-(--color-primary)' : 'text-(--color-bookings-heading)'"
         class="flex-1 py-2 rounded-xl font-bold transition-all"
       >
         Einnahme
@@ -66,7 +66,7 @@ const save = () => {
           placeholder="0.00"
           class="text-5xl font-black text-center w-full bg-transparent outline-none text-(--color-primary)"
         />
-        <p class="text-xs opacity-40 mt-1 uppercase tracking-widest font-bold">
+        <p class="text-xs text-(--color-bookings-heading) mt-1 uppercase tracking-widest font-bold">
           {{ transactionStore.settings.currency }}
           <!-- {{ transactionStore.settings.currency === 'CHF' ? 'CHF' : 'Euro' }} -->
         </p>
@@ -76,7 +76,7 @@ const save = () => {
         v-model="form.description"
         type="text"
         placeholder="Wofür? (z.B. Einkauf, Miete...)"
-        class="input input-bordered w-full rounded-2xl bg-slate-50 border-none focus-ring-2 ring-primary"
+        class="input w-full rounded-2xl bg-(--color-base-100) border-none focus:outline-2 outline-(--color-base-100) shadow-none"
       />
 
       <!-- NEU: Datum -->
