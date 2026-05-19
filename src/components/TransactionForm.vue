@@ -68,7 +68,6 @@ const save = () => {
         />
         <p class="text-xs text-(--color-bookings-heading) mt-1 uppercase tracking-widest font-bold">
           {{ transactionStore.settings.currency }}
-          <!-- {{ transactionStore.settings.currency === 'CHF' ? 'CHF' : 'Euro' }} -->
         </p>
       </div>
       <!-- Beschreibung -->
