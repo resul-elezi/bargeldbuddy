@@ -85,7 +85,7 @@ const isFormOpen = ref(false);
         </div>
 
           <div class="text-right">
-            <p :class="t.type === 'expense' ? 'text-(--text-red)' : 'text-(--text-success)'" class="font-black text-lg">
+            <p :class="t.type === 'expense' ? 'text-(--text-red)' : 'text-success'" class="font-black text-lg">
               {{ t.type === 'expense' ? '-' : '+' }} {{ formatCurrency(t.amount, t.currency || transactionStore.settings.currency) }}
             </p>
           </div>
