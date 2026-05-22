@@ -92,7 +92,7 @@ const isFormOpen = ref(false);
           <!-- Der Löschen-Button -->
           <button 
           @click="transactionStore.deleteTransaction(t.id)"
-          class="btn btn-ghost btn-circle btn-xs text-error opacity-30 group-hover:opacity-100 transition-opacity"
+          class="btn btn-ghost btn-circle btn-xs text-error/40 group-hover:opacity-100 transition-opacity ml-2 shadow-xs/10"
           title="Löschen"
         >
           <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
