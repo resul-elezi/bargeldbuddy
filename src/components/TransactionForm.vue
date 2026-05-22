@@ -36,7 +36,7 @@ const save = () => {
 
 <template>
   <!-- Card-Design für das Formular -->
-  <div class="bg-white p-4 sm:p-6 rounded-3xl shadow-2xl border border-black/5 w-full max-w-[21.5rem] sm:max-w-sm mx-auto mb-24 sm:mb-4">
+  <div class="bg-white p-4 sm:p-6 rounded-3xl shadow-2xl border border-black/5 w-full max-w-[21.5rem] sm:max-w-md mx-auto mb-28 sm:mb-4">
     <!-- Einnahme/Ausgabe Toggle -->
     <div class="flex gap-2 mb-6 p-1 bg-(--color-base-100) rounded-2xl">
       <button 
