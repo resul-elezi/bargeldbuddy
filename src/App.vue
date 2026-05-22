@@ -51,7 +51,7 @@ const isFormOpen = ref(false);
           <!-- Was übrig ist (Bilanz) -->
           <div class="stat border-l border-slate-50">
             <div class="stat-title text-xs font-bold uppercase tracking-wider">Übrig</div>
-            <div class="stat-value text-2xl" :class="transactionStore.balance < 0 ? 'text-(--text-alert)' : 'text-(--text-success)'">
+            <div class="stat-value text-2xl" :class="transactionStore.balance < 0 ? 'text-error' : 'text-success'">
                     {{ formatCurrency(transactionStore.balance, transactionStore.settings.currency) }}
                   </div>
             <div class="stat-desc mt-1 italic">Vom Lohn</div>
