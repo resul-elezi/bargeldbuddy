@@ -42,7 +42,7 @@ const isFormOpen = ref(false);
           <!-- Gesamter Verbrauch (Ausgaben) -->
           <div class="stat">
             <div class="stat-title text-xs font-bold uppercase tracking-wider">Verbrauch</div>
-            <div class="stat-value text-(--text-alert) text-2xl">
+            <div class="stat-value text-error text-2xl">
               {{ formatCurrency(transactionStore.totalExpenses, transactionStore.settings.currency) }}
             </div>
             <div class="stat-desc mt-1">Diesen Monat</div>
