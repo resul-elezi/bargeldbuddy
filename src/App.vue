@@ -73,12 +73,12 @@ const isFormOpen = ref(false);
           class="flex items-center justify-between bg-base-100 p-4 sm:p-5 rounded-2xl shadow-sm"
         >
         <div class="flex-1 min-w-0 pr-2">
-          <p class="font-bold text-(--color-base-content) truncate text-sm sm:text-base">{{ t.description }}</p>
+          <p class="font-bold text-base-content truncate text-sm sm:text-base">{{ t.description }}</p>
           <div class="flex items-center gap-2">
             <p class="text-[10px] opacity-40 uppercase tracking-tighter">
               {{ new Date(t.timestamp).toLocaleDateString() }}
             </p>
-            <span class="text-[9px] px-1.5 py-0.5 rounded bg-(--color-base-200) text-(--color-base-content) font-bold uppercase">
+            <span class="text-[9px] px-1.5 py-0.5 rounded bg-base-200 text-base-content font-bold uppercase">
               {{ t.paymentMethod === 'cash' ? 'Bar' : t.paymentMethod === 'card' ? 'Karte' : 'Andere' }}
             </span>
           </div>
