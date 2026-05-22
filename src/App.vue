@@ -36,7 +36,7 @@ const isFormOpen = ref(false);
       <h2 class="text-sm font-black uppercase tracking-widest text-(--color-bookings-heading) px-1">Letzte Buchungen</h2>
 
       <section class="max-w-md mx-auto mb-8">
-        <div class="stats shadow-sm w-full bg-(--color-base-100) rounded-3xl border border-black/5 overflow-hidden">
+        <div class="stats stats-vertical sm:stats-horizontal shadow-sm w-full bg-(--color-base-100) rounded-3xl border border-black/5 overflow-hidden">
           
           <!-- Gesamter Verbrauch (Ausgaben) -->
           <div class="stat">
