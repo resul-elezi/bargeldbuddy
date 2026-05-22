@@ -122,7 +122,7 @@ const isFormOpen = ref(false);
     </button>
 
     <!-- Modal-Overlay -->
-    <div v-if="isFormOpen" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-50 flex items-end sm:items-center justify-center">
+    <div v-if="isFormOpen" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-50 flex items-center justify-center">
       <TransactionForm @close="isFormOpen = false" />
     </div>
 
