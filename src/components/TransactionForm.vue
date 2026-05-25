@@ -41,7 +41,7 @@ const save = () => {
     <div class="flex gap-2 mb-6 p-1 bg-(--color-base-100) rounded-2xl">
       <button 
         @click="form.type = 'expense'"
-        :class="form.type === 'expense' ? 'bg-white shadow-sm text-(--text-alert)' : 'text-(--color-bookings-heading)'"
+        :class="form.type === 'expense' ? 'bg-white shadow-sm text-error' : 'text-(--color-bookings-heading)'"
         class="flex-1 py-2 rounded-xl font-bold transition-all"
       >
         Ausgabe
