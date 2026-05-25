@@ -101,20 +101,4 @@ const save = () => {
       </div>
     </div>
   </div>
-  <dialog id="delete_modal" class="modal modal-bottom sm:modal-middle">
-  <div class="modal-box bg-base-100 rounded-3xl border border-black/5">
-    <h3 class="text-lg font-bold text-base-content">Buchung löschen?</h3>
-    <p class="py-4 text-sm text-bookings-heading">
-      Möchtest du diese Buchung wirklich unwiderruflich entfernen?
-    </p>
-    <div class="modal-action grid grid-cols-2 gap-3">
-      <form method="dialog">
-        <button class="btn btn-ghost w-full rounded-2xl">Abbrechen</button>
-      </form>
-      <button @click="confirmDelete" class="btn btn-error text-white rounded-2xl">
-        Löschen
-      </button>
-    </div>
-  </div>
-</dialog>
 </template>
