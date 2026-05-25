@@ -8,19 +8,29 @@ const isFormOpen = ref(false);
 
 const transactionIdToDelete = ref(null);
 
+// 1. Schritt: ID merken und Modal öffnen
 const openDeleteModal = (id) => {
   transactionIdToDelete.value = id
-  document.getElementById('delete_modal').showModal()
+  const modal = document.getElementById('delete_modal')
+  if (modal) {
+    modal.showModal()
+  }
 }
 
-// Wird aufgerufen, wenn man im Modal auf "Löschen" klickt
+// 2. Schritt: Wenn im Modal "Löschen" geklickt wird
 const confirmDelete = () => {
-  if (transactionIdToDelete.value) {
+  if (transactionIdToDelete.value !== null) {
+    // Wir nutzen deinen importierten transactionStore direkt
     transactionStore.deleteTransaction(transactionIdToDelete.value)
     transactionIdToDelete.value = null
   }
-  document.getElementById('delete_modal').close()
+  
+  const modal = document.getElementById('delete_modal')
+  if (modal) {
+    modal.close()
+  }
 }
+
 </script>
 
 <template>
@@ -107,7 +117,7 @@ const confirmDelete = () => {
           </div>
           <!-- Der Löschen-Button -->
           <button 
-          @click="transactionStore.deleteTransaction(t.id)"
+          @click="openDeleteModal(t.id)"
           class="btn btn-ghost btn-circle btn-xs text-error/40 ml-2 shadow-xs/10"
           title="Löschen"
         >
@@ -143,7 +153,8 @@ const confirmDelete = () => {
     </div>
 
   </div>
-  <dialog id="delete-modal" class="modal modal-bottom sm:modal-middle">
+  <!-- Bestätigungs-Modal -->
+<dialog id="delete_modal" class="modal modal-bottom sm:modal-middle">
   <div class="modal-box bg-base-100 rounded-3xl border border-black/5">
     <h3 class="text-lg font-bold text-base-content">Buchung löschen?</h3>
     <p class="py-4 text-sm text-bookings-heading">
@@ -153,22 +164,7 @@ const confirmDelete = () => {
       <form method="dialog">
         <button class="btn btn-ghost w-full rounded-2xl">Abbrechen</button>
       </form>
-      <button @click="confirmDelete" class="btn btn-error text-white rounded-2xl">
-        Löschen
-      </button>
-    </div>
-  </div>
-</dialog>
-  <dialog id="delete_modal" class="modal modal-bottom sm:modal-middle">
-  <div class="modal-box bg-base-100 rounded-3xl border border-black/5">
-    <h3 class="text-lg font-bold text-base-content">Buchung löschen?</h3>
-    <p class="py-4 text-sm text-bookings-heading">
-      Möchtest du diese Buchung wirklich unwiderruflich entfernen?
-    </p>
-    <div class="modal-action grid grid-cols-2 gap-3">
-      <form method="dialog">
-        <button class="btn btn-ghost w-full rounded-2xl">Abbrechen</button>
-      </form>
+      <!-- Ruft die endgültige Lösch-Funktion auf -->
       <button @click="confirmDelete" class="btn btn-error text-white rounded-2xl">
         Löschen
       </button>
