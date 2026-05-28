@@ -10,11 +10,22 @@ const isFormOpen = ref(false);
 const transactionToEdit = ref(null);
 const transactionIdToDelete = ref(null);
 
+// 1. Stift geklickt: Daten merken & Modal öffnen
 const openEditModal = (transaction) => {
-  transactionToEdit.value = { ...transaction};
+  transactionToEdit.value = { ...transaction }
+  const modal = document.getElementById('edit-modal')
+  if (modal) {
+    modal.showModal() // Öffnet das DaisyUI/HTML5 Modal
+  }
 }
-const clearEdit = () => {
-  transactionToEdit.value = null;
+
+// 2. Fertig mit Speichern/Abbrechen: Modal schließen & Daten leeren
+const closeEditModal = () => {
+  const modal = document.getElementById('edit-modal')
+  if (modal) {
+    modal.close()
+  }
+  transactionToEdit.value = null
 }
 // 1. Schritt: ID merken und Modal öffnen
 const openDeleteModal = (id) => {
@@ -173,6 +184,17 @@ const confirmDelete = () => {
     </div>
 
   </div>
+  <!-- Edit-Modal -->
+   <dialog id="edit-modal" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box bg-base-100 rounded-3xl border border-black/5 max-w-md">
+    <h3 class="text-lg font-bold text-base-content mb-4">Buchung bearbeiten</h3>
+    
+    <TransactionForm 
+      :editTransaction="transactionToEdit" 
+      @close-edit="closeEditModal"
+    />
+  </div>
+</dialog>
   <!-- Bestätigungs-Modal -->
 <dialog id="delete-modal" class="modal modal-bottom sm:modal-middle">
   <div class="modal-box bg-base-100 rounded-3xl border border-black/5">
