@@ -11,7 +11,7 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits(['close', 'close-edit']);
+const emit = defineEmits(['close']);
 const amountInput = ref(null);
 
 const form = reactive({
@@ -27,18 +27,21 @@ onMounted(() => {
   amountInput.value?.focus();
 });
 
-// Watcher: Wenn eine Buchung zum Bearbeiten reinkommt, füllen wir das reaktive Formular
+// Watcher: Rechnet den Timestamp der Buchung in das HTML-Datumsformat um
 watch(() => props.editTransaction, (newVal) => {
   if (newVal) {
-    // Wenn wir bearbeiten, müssen wir die Cents wieder in die normale Ansicht bringen
-    // Falls du einen Helfer wie fromCents hast, nutze den, ansonsten geteilt durch 100
     form.amount = (newVal.amount / 100).toFixed(2);
     form.description = newVal.description;
     form.type = newVal.type;
     form.paymentMethod = newVal.paymentMethod;
-    form.date = newVal.date;
+    
+    // Falls ein Timestamp da ist, machen wir daraus ein YYYY-MM-DD Datum für das Input-Feld
+    if (newVal.timestamp) {
+      form.date = new Date(newVal.timestamp).toISOString().substr(0, 10);
+    } else {
+      form.date = new Date().toISOString().substr(0, 10);
+    }
   } else {
-    // Wenn der Edit-Modus vorbei ist, setzen wir das Formular zurück
     resetForm();
   }
 }, { immediate: true });
@@ -52,8 +55,8 @@ const resetForm = () => {
 };
 
 const closeAndReset = () => {
-  resetForm();    // Leert die Eingabefelder
-  emit('close');  // Sagt App.vue, dass das Modal zugehen soll
+  resetForm();    
+  emit('close');  // Schließt das Overlay in App.vue über closeForm()
 };
 
 const save = () => {
@@ -64,9 +67,8 @@ const save = () => {
     type: form.type,
     description: form.description,
     paymentMethod: form.paymentMethod,
-    date: form.date,
-    // Wenn wir editieren, behalten wir die ID, sonst wird sie beim Hinzufügen neu erstellt
-    id: props.editTransaction ? props.editTransaction.id : Date.now()
+    date: form.date, // YYYY-MM-DD String geht an den Store
+    id: props.editTransaction ? props.editTransaction.id : null
   };
 
   if (props.editTransaction) {
@@ -75,7 +77,7 @@ const save = () => {
     transactionStore.addTransaction(transactionData);
   }
 
-  closeAndReset(); // Schließt das Modal und resettet alles sauber
+  closeAndReset(); 
 };
 </script>
 
