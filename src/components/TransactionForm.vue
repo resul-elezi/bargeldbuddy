@@ -43,6 +43,14 @@ watch(() => props.editTransaction, (newVal) => {
   }
 }, { immediate: true });
 
+const resetForm = () => {
+  form.amount = '';
+  form.description = '';
+  form.type = 'expense';
+  form.paymentMethod = 'cash';
+  form.date = new Date().toISOString().substr(0, 10);
+};
+
 const save = () => {
   if (!form.amount || !form.description) return;
 
