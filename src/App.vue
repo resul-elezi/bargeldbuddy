@@ -10,46 +10,38 @@ const isFormOpen = ref(false);
 const transactionToEdit = ref(null);
 const transactionIdToDelete = ref(null);
 
-// 1. Stift geklickt: Daten merken & Modal öffnen
+// Öffnet das Formular im Bearbeitungs-Modus
 const openEditModal = (transaction) => {
-  transactionToEdit.value = { ...transaction }
-  const modal = document.getElementById('edit-modal')
-  if (modal) {
-    modal.showModal() // Öffnet das DaisyUI/HTML5 Modal
-  }
-}
+  transactionToEdit.value = { ...transaction };
+  isFormOpen.value = true; // Nutzt das gleiche Overlay!
+};
 
-// 2. Fertig mit Speichern/Abbrechen: Modal schließen & Daten leeren
-const closeEditModal = () => {
-  const modal = document.getElementById('edit-modal')
-  if (modal) {
-    modal.close()
-  }
-  transactionToEdit.value = null
-}
-// 1. Schritt: ID merken und Modal öffnen
+// Schließt das Formular (egal ob neu oder edit) und resettet den Zustand
+const closeForm = () => {
+  isFormOpen.value = false;
+  transactionToEdit.value = null;
+};
+
+// Löschen-Modal bleibt über ID gesteuert (das funktioniert super)
 const openDeleteModal = (id) => {
-  transactionIdToDelete.value = id
-  const modal = document.getElementById('delete-modal')
+  transactionIdToDelete.value = id;
+  const modal = document.getElementById('delete-modal');
   if (modal) {
-    modal.showModal()
+    modal.showModal();
   }
-}
+};
 
-// 2. Schritt: Wenn im Modal "Löschen" geklickt wird
 const confirmDelete = () => {
   if (transactionIdToDelete.value !== null) {
-    // Wir nutzen deinen importierten transactionStore direkt
-    transactionStore.deleteTransaction(transactionIdToDelete.value)
-    transactionIdToDelete.value = null
+    transactionStore.deleteTransaction(transactionIdToDelete.value);
+    transactionIdToDelete.value = null;
   }
   
-  const modal = document.getElementById('delete-modal')
+  const modal = document.getElementById('delete-modal');
   if (modal) {
-    modal.close()
+    modal.close();
   }
-}
-
+};
 </script>
 
 <template>
@@ -178,14 +170,54 @@ const confirmDelete = () => {
       +
     </button>
 
+    <div v-if="isFormOpen" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-50 flex items-center justify-center p-4">
+      <div class="bg-base-100 rounded-3xl border border-black/5 max-w-md w-full p-6 shadow-2xl relative">
+        
+        <h3 class="text-lg font-bold text-base-content mb-4">
+          {{ transactionToEdit ? 'Buchung bearbeiten' : 'Neue Buchung' }}
+        </h3>
+        
+        <TransactionForm 
+          :editTransaction="transactionToEdit" 
+          @close="closeForm" 
+        />
+        
+      </div>
+    </div>
+
+  </div> <dialog id="delete-modal" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box bg-base-100 rounded-3xl border border-black/5">
+      <h3 class="text-lg font-bold text-base-content">Buchung löschen?</h3>
+      <p class="py-4 text-sm text-bookings-heading">
+        Möchtest du diese Buchung wirklich unwiderruflich entfernen?
+      </p>
+      <div class="modal-action grid grid-cols-2 gap-3">
+        <form method="dialog">
+          <button class="btn btn-ghost w-full rounded-2xl">Abbrechen</button>
+        </form>
+        <button @click="confirmDelete" class="btn btn-error text-white rounded-2xl">
+          Löschen
+        </button>
+      </div>
+    </div>
+  </dialog>
+</template>
+
+    <!-- <button 
+      @click="isFormOpen = true"
+      class="fixed bottom-8 right-8 btn btn-primary btn-circle btn-lg shadow-2xl text-2xl z-40"
+    >
+      +
+    </button>
+
     <!-- Modal-Overlay -->
-    <div v-if="isFormOpen" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-50 flex items-center justify-center">
+    <!-- <div v-if="isFormOpen" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-50 flex items-center justify-center">
       <TransactionForm @close="isFormOpen = false" />
     </div>
 
-  </div>
+  </div> -->
   <!-- Edit-Modal -->
-   <dialog id="edit-modal" class="modal modal-bottom sm:modal-middle">
+   <!-- <dialog id="edit-modal" class="modal modal-bottom sm:modal-middle">
   <div class="modal-box bg-base-100 rounded-3xl border border-black/5 max-w-md">
     <h3 class="text-lg font-bold text-base-content mb-4">Buchung bearbeiten</h3>
     
@@ -194,9 +226,10 @@ const confirmDelete = () => {
       @close-edit="closeEditModal"
     />
   </div>
-</dialog>
+</dialog> -->
+
   <!-- Bestätigungs-Modal -->
-<dialog id="delete-modal" class="modal modal-bottom sm:modal-middle">
+<!-- <dialog id="delete-modal" class="modal modal-bottom sm:modal-middle">
   <div class="modal-box bg-base-100 rounded-3xl border border-black/5">
     <h3 class="text-lg font-bold text-base-content">Buchung löschen?</h3>
     <p class="py-4 text-sm text-bookings-heading">
@@ -207,11 +240,11 @@ const confirmDelete = () => {
         <button class="btn btn-ghost w-full rounded-2xl">Abbrechen</button>
       </form>
       <!-- Ruft die endgültige Lösch-Funktion auf -->
-      <button @click="confirmDelete" class="btn btn-error text-white rounded-2xl">
+      <!-- <button @click="confirmDelete" class="btn btn-error text-white rounded-2xl">
         Löschen
       </button>
     </div>
   </div>
 </dialog>
   
-</template>
+</template> -->
