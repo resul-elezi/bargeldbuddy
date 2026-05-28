@@ -6,8 +6,16 @@ import TransactionForm from './components/TransactionForm.vue';
 
 const isFormOpen = ref(false);
 
+// Variable für die Buchung, die bearbeitet wird
+const transactionToEdit = ref(null);
 const transactionIdToDelete = ref(null);
 
+const openEditModal = (transaction) => {
+  transactionToEdit.value = { ...transaction};
+}
+const clearEdit = () => {
+  transactionToEdit.value = null;
+}
 // 1. Schritt: ID merken und Modal öffnen
 const openDeleteModal = (id) => {
   transactionIdToDelete.value = id
