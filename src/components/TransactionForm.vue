@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, onMounted, ref } from 'vue';
+import { reactive, onMounted, ref, watch, defineProps, defineEmits } from 'vue';
 import { transactionStore } from '../store/transactionStore.js';
 import { toCents } from '../utils/currencyHelper.js';
 
