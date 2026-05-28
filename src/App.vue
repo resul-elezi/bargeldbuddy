@@ -164,7 +164,7 @@ const confirmDelete = () => {
 
     <!-- Floating Action Button -->
     <button 
-      @click="isFormOpen = true"
+  @click="transactionToEdit = null; isFormOpen = true"
       class="fixed bottom-8 right-8 btn btn-primary btn-circle btn-lg shadow-2xl text-2xl z-40"
     >
       +

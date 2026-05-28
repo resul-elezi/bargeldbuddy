@@ -51,6 +51,11 @@ const resetForm = () => {
   form.date = new Date().toISOString().substr(0, 10);
 };
 
+const closeAndReset = () => {
+  resetForm();    // Leert die Eingabefelder
+  emit('close');  // Sagt App.vue, dass das Modal zugehen soll
+};
+
 const save = () => {
   if (!form.amount || !form.description) return;
 
@@ -60,21 +65,17 @@ const save = () => {
     description: form.description,
     paymentMethod: form.paymentMethod,
     date: form.date,
-    // Ganz wichtig: Wenn wir editieren, nehmen wir die ID der bestehenden Buchung, 
-    // andernfalls vergeben wir ein neues Datum als ID (oder wie dein Store es macht)
+    // Wenn wir editieren, behalten wir die ID, sonst wird sie beim Hinzufügen neu erstellt
     id: props.editTransaction ? props.editTransaction.id : Date.now()
   };
 
   if (props.editTransaction) {
-    // Hier rufen wir das Update im Store auf
     transactionStore.updateTransaction(transactionData);
   } else {
-    // Deine alte Logik für neue Einträge
     transactionStore.addTransaction(transactionData);
   }
 
-  // Hier triggern wir das Schließen des Modals
-  emit('close'); 
+  closeAndReset(); // Schließt das Modal und resettet alles sauber
 };
 </script>
 
@@ -140,9 +141,13 @@ const save = () => {
 
       <!-- Buttons -->
       <div class="grid grid-cols-2 gap-2">
-        <button v-if="editTransaction" 
-  @click="emit('close-edit')" class="btn btn-ghost rounded-2xl bg-(--color-base-100)">Abbrechen</button>
-        <button @click="save" class="btn btn-primary rounded-2xl text-white shadow-none">{{ editTransaction ? 'Speichern' : 'Hinzufügen' }}</button>
+        <button type="button" @click="closeAndReset" class="btn btn-ghost rounded-2xl">
+    Abbrechen
+  </button>
+  
+  <button type="button" @click="save" class="btn btn-primary rounded-2xl">
+    {{ editTransaction ? 'Speichern' : 'Hinzufügen' }}
+  </button>
       </div>
     </div>
   </div>
