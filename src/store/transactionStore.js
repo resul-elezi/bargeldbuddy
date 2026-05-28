@@ -62,6 +62,13 @@ export const transactionStore = reactive({
     if (confirm('Möchtest du wirklich alle Buchungen löschen? Dies kann nicht rückgängig gemacht werden.')) {
       this.transactions = [];
     }
+  },
+  // Aktion zum Aktualisieren einer bestehenden Transaktion
+  updateTransaction(updatedTransaction) {
+    const index = this.transactions.findIndex(t => t.id === updatedTransaction.id);
+    if (index !== -1) {
+      this.transactions[index] = { ...updatedTransaction };
+    }
   }
 });
 
