@@ -116,20 +116,20 @@ const confirmDelete = () => {
             </p>
           </div>
           <!-- Der Edit-Button -->
-          <div class="flex items-center gap-1 ml-2">
+          <div class="flex items-center gap-1 ml-1">
             <button 
             @click="openEditModal(t)"
             class="btn btn-ghost btn-circle btn-xs text-base-content/40 shadow-xs/10"
             title="Bearbeiten"
           >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-3 w-3">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-3.5 w-3.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
               </svg>
             </button>
           <!-- Der Löschen-Button -->
           <button 
           @click="openDeleteModal(t.id)"
-          class="btn btn-ghost btn-circle btn-xs text-error/40 ml-2 shadow-xs/10"
+          class="btn btn-ghost btn-circle btn-xs text-error/40 shadow-xs/10"
           title="Löschen"
         >
           <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
