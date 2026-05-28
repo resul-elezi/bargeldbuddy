@@ -11,7 +11,7 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits(['close']);
+const emit = defineEmits(['close', 'close-edit']);
 const amountInput = ref(null);
 
 const form = reactive({
