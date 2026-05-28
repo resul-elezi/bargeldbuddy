@@ -65,11 +65,11 @@ export const transactionStore = reactive({
   },
   // Aktion zum Aktualisieren einer bestehenden Transaktion
   updateTransaction(updatedTransaction) {
-    const index = this.transactions.findIndex(t => t.id === updatedTransaction.id);
-    if (index !== -1) {
-      this.transactions[index] = { ...updatedTransaction };
-    }
+  const index = this.transactions.findIndex(t => t.id === updatedTransaction.id);
+  if (index !== -1) {
+    this.transactions[index] = { ...this.transactions[index], ...updatedTransaction };
   }
+}
 });
 
 // 4. Der "Autosave" (Watcher)

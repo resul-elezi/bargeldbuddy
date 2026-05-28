@@ -138,8 +138,9 @@ const save = () => {
 
       <!-- Buttons -->
       <div class="grid grid-cols-2 gap-2">
-        <button @click="emit('close')" class="btn btn-ghost rounded-2xl bg-(--color-base-100)">Abbrechen</button>
-        <button @click="save" class="btn btn-primary rounded-2xl text-white shadow-none">Speichern</button>
+        <button v-if="editTransaction" 
+  @click="emit('close-edit')" class="btn btn-ghost rounded-2xl bg-(--color-base-100)">Abbrechen</button>
+        <button @click="save" class="btn btn-primary rounded-2xl text-white shadow-none">{{ editTransaction ? 'Speichern' : 'Hinzufügen' }}</button>
       </div>
     </div>
   </div>
