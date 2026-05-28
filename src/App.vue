@@ -11,7 +11,7 @@ const transactionIdToDelete = ref(null);
 // 1. Schritt: ID merken und Modal öffnen
 const openDeleteModal = (id) => {
   transactionIdToDelete.value = id
-  const modal = document.getElementById('delete_modal')
+  const modal = document.getElementById('delete-modal')
   if (modal) {
     modal.showModal()
   }
@@ -154,7 +154,7 @@ const confirmDelete = () => {
 
   </div>
   <!-- Bestätigungs-Modal -->
-<dialog id="delete_modal" class="modal modal-bottom sm:modal-middle">
+<dialog id="delete-modal" class="modal modal-bottom sm:modal-middle">
   <div class="modal-box bg-base-100 rounded-3xl border border-black/5">
     <h3 class="text-lg font-bold text-base-content">Buchung löschen?</h3>
     <p class="py-4 text-sm text-bookings-heading">
