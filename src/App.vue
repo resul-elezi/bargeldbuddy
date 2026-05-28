@@ -37,7 +37,7 @@ const confirmDelete = () => {
   <div class="min-h-screen bg-base-100 p-4"> <!-- pb-24 für Platz unten -->
     
     <header class="py-8 text-center">
-      <h1 class="text-4xl font-black tracking-tight text-base-content">Finanz<span class="text-primary">Buddy</span></h1>
+      <h1 class="text-4xl font-black tracking-tight text-base-content">Bargeld<span class="text-primary">Buddy</span></h1>
       <!-- <p class="text-sm opacity-70">So einfach wie Papier.</p> -->
       <div class="badge badge-ghost font-mono mt-1 opacity-50">v0.1 MVP</div>
       
