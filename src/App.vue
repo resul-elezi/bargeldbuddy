@@ -165,7 +165,7 @@ const confirmDelete = () => {
     <!-- Floating Action Button -->
     <button 
   @click="transactionToEdit = null; isFormOpen = true"
-      class="fixed bottom-8 right-8 btn btn-primary btn-circle btn-lg shadow-none text-2xl z-40"
+      class="fixed bottom-8 right-8 btn btn-primary btn-circle btn-lg shadow-2xl text-2xl z-40"
     >
       +
     </button>
@@ -185,7 +185,8 @@ const confirmDelete = () => {
       </div>
     </div>
 
-  </div> <dialog id="delete-modal" class="modal modal-bottom sm:modal-middle">
+  </div> 
+  <dialog id="delete-modal" class="modal modal-bottom sm:modal-middle">
     <div class="modal-box bg-base-100 rounded-3xl border border-black/5">
       <h3 class="text-lg font-bold text-base-content">Buchung löschen?</h3>
       <p class="py-4 text-sm text-bookings-heading">
