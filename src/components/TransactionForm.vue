@@ -123,7 +123,7 @@ const save = () => {
         v-model="form.description"
         type="text"
         placeholder="Wofür? (z.B. Einkauf, Miete...)"
-        class="input w-full rounded-2xl bg-(--color-base-100) border-none outline-(--color-base-content)/20 shadow-none"
+        class="input w-full rounded-2xl bg-base-100 border-none outline-(--color-base-content)/20 shadow-none"
       />
 
       <!-- NEU: Datum -->
@@ -148,7 +148,7 @@ const save = () => {
     Abbrechen
   </button>
   
-  <button type="button" @click="save" class="btn btn-primary rounded-2xl">
+  <button type="button" @click="save" class="btn btn-primary rounded-2xl shadow-none">
     {{ editTransaction ? 'Speichern' : 'Hinzufügen' }}
   </button>
       </div>
