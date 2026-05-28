@@ -54,22 +54,37 @@ export const transactionStore = reactive({
     this.transactions.sort((a, b) => b.timestamp - a.timestamp);
   },
 
-  // Methode: Eintrag löschen (für später wichtig)
+  // Methode: Eintrag löschen (Reaktivität bleibt erhalten!)
   deleteTransaction(id) {
-    this.transactions = this.transactions.filter(t => t.id !== id);
+    const index = this.transactions.findIndex(t => t.id === id);
+    if (index !== -1) {
+      this.transactions.splice(index, 1);
+    }
   },
   clearAllTransactions() {
     if (confirm('Möchtest du wirklich alle Buchungen löschen? Dies kann nicht rückgängig gemacht werden.')) {
-      this.transactions = [];
+      this.transactions.length = 0; // Leert das reaktive Array sauber
     }
   },
   // Aktion zum Aktualisieren einer bestehenden Transaktion
   updateTransaction(updatedTransaction) {
-  const index = this.transactions.findIndex(t => t.id === updatedTransaction.id);
-  if (index !== -1) {
-    this.transactions[index] = { ...this.transactions[index], ...updatedTransaction };
+    const index = this.transactions.findIndex(t => t.id === updatedTransaction.id);
+    if (index !== -1) {
+      // Wir überschreiben das Objekt direkt an seinem Platz im Array
+      this.transactions[index] = {
+        ...this.transactions[index],
+        amount: updatedTransaction.amount,
+        type: updatedTransaction.type,
+        description: updatedTransaction.description,
+        paymentMethod: updatedTransaction.paymentMethod,
+        // Wir konvertieren das geänderte Datum wieder zurück in einen Timestamp
+        timestamp: updatedTransaction.date ? new Date(updatedTransaction.date).getTime() : Date.now()
+      };
+      
+      // Nach dem Update neu sortieren, falls das Datum geändert wurde
+      this.transactions.sort((a, b) => b.timestamp - a.timestamp);
+    }
   }
-}
 });
 
 // 4. Der "Autosave" (Watcher)
