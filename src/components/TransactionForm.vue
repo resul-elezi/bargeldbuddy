@@ -54,15 +54,25 @@ const resetForm = () => {
 const save = () => {
   if (!form.amount || !form.description) return;
 
-  transactionStore.addTransaction({
+  const transactionData = {
     amount: toCents(form.amount),
     type: form.type,
     description: form.description,
     paymentMethod: form.paymentMethod,
-    date: form.date // Wir geben das gewählte Datum mit
-  });
+    date: form.date,
+    // Wenn wir bearbeiten, behalten wir die bestehende ID, sonst generiert dein Store/Backend eine neue
+    ...(props.editTransaction && { id: props.editTransaction.id })
+  };
 
-  emit('close');
+  if (props.editTransaction) {
+    // Hier rufst du die Update-Funktion deines Stores auf
+    transactionStore.updateTransaction(transactionData);
+    emit('close-edit'); // Schließt den Edit-Modus in App.vue
+  } else {
+    // Deine bestehende Logik für neue Einträge
+    transactionStore.addTransaction(transactionData);
+    emit('close');
+  }
 };
 </script>
 
