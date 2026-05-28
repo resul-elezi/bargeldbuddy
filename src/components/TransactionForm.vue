@@ -60,19 +60,21 @@ const save = () => {
     description: form.description,
     paymentMethod: form.paymentMethod,
     date: form.date,
-    // Wenn wir bearbeiten, behalten wir die bestehende ID, sonst generiert dein Store/Backend eine neue
-    ...(props.editTransaction && { id: props.editTransaction.id })
+    // Ganz wichtig: Wenn wir editieren, nehmen wir die ID der bestehenden Buchung, 
+    // andernfalls vergeben wir ein neues Datum als ID (oder wie dein Store es macht)
+    id: props.editTransaction ? props.editTransaction.id : Date.now()
   };
 
   if (props.editTransaction) {
-    // Hier rufst du die Update-Funktion deines Stores auf
+    // Hier rufen wir das Update im Store auf
     transactionStore.updateTransaction(transactionData);
-    emit('close-edit'); // Schließt den Edit-Modus in App.vue
   } else {
-    // Deine bestehende Logik für neue Einträge
+    // Deine alte Logik für neue Einträge
     transactionStore.addTransaction(transactionData);
-    emit('close');
   }
+
+  // Hier triggern wir das Schließen des Modals
+  emit('close'); 
 };
 </script>
 
