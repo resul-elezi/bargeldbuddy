@@ -3,6 +3,14 @@ import { reactive, onMounted, ref, watch, defineProps, defineEmits } from 'vue';
 import { transactionStore } from '../store/transactionStore.js';
 import { toCents } from '../utils/currencyHelper.js';
 
+// Wir empfangen die zu bearbeitende Transaktion von App.vue
+const props = defineProps({
+  editTransaction: {
+    type: Object,
+    default: null
+  }
+});
+
 const emit = defineEmits(['close']);
 const amountInput = ref(null);
 
