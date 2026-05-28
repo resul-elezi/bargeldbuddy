@@ -27,6 +27,14 @@ onMounted(() => {
   amountInput.value?.focus();
 });
 
+const resetForm = () => {
+  form.amount = '';
+  form.description = '';
+  form.type = 'expense';
+  form.paymentMethod = 'cash';
+  form.date = new Date().toISOString().substr(0, 10);
+};
+
 // Watcher: Rechnet den Timestamp der Buchung in das HTML-Datumsformat um
 watch(() => props.editTransaction, (newVal) => {
   if (newVal) {
@@ -46,13 +54,6 @@ watch(() => props.editTransaction, (newVal) => {
   }
 }, { immediate: true });
 
-const resetForm = () => {
-  form.amount = '';
-  form.description = '';
-  form.type = 'expense';
-  form.paymentMethod = 'cash';
-  form.date = new Date().toISOString().substr(0, 10);
-};
 
 const closeAndReset = () => {
   resetForm();    
