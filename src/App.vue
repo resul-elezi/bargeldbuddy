@@ -25,7 +25,7 @@ const confirmDelete = () => {
     transactionIdToDelete.value = null
   }
   
-  const modal = document.getElementById('delete_modal')
+  const modal = document.getElementById('delete-modal')
   if (modal) {
     modal.close()
   }
