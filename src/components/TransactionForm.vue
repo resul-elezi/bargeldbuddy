@@ -27,6 +27,22 @@ onMounted(() => {
   amountInput.value?.focus();
 });
 
+// Watcher: Wenn eine Buchung zum Bearbeiten reinkommt, füllen wir das reaktive Formular
+watch(() => props.editTransaction, (newVal) => {
+  if (newVal) {
+    // Wenn wir bearbeiten, müssen wir die Cents wieder in die normale Ansicht bringen
+    // Falls du einen Helfer wie fromCents hast, nutze den, ansonsten geteilt durch 100
+    form.amount = (newVal.amount / 100).toFixed(2);
+    form.description = newVal.description;
+    form.type = newVal.type;
+    form.paymentMethod = newVal.paymentMethod;
+    form.date = newVal.date;
+  } else {
+    // Wenn der Edit-Modus vorbei ist, setzen wir das Formular zurück
+    resetForm();
+  }
+}, { immediate: true });
+
 const save = () => {
   if (!form.amount || !form.description) return;
 
