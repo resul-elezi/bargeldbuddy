@@ -8,7 +8,6 @@ const isFormOpen = ref(false);
 
 // Variable für die Buchung, die bearbeitet wird
 const transactionToEdit = ref(null);
-
 const transactionIdToDelete = ref(null);
 
 // Öffnet das Formular im Bearbeitungs-Modus
@@ -172,16 +171,12 @@ const confirmDelete = () => {
     </button>
 
     <div v-if="isFormOpen" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-50 flex items-center justify-center p-4">
-      <!-- <div class="bg-base-100 rounded-3xl border border-black/5 max-w-md w-full p-6 shadow-2xl relative"> -->
-        
-        
         
         <TransactionForm 
           :editTransaction="transactionToEdit" 
           @close="closeForm" 
         />
         
-      <!-- </div> -->
     </div>
 
   </div> 
@@ -202,51 +197,3 @@ const confirmDelete = () => {
     </div>
   </dialog>
 </template>
-<!-- <h3 class="text-lg font-bold text-base-content mb-4">
-          {{ transactionToEdit ? 'Buchung bearbeiten' : 'Neue Buchung' }}
-        </h3> -->
-    <!-- <button 
-      @click="isFormOpen = true"
-      class="fixed bottom-8 right-8 btn btn-primary btn-circle btn-lg shadow-2xl text-2xl z-40"
-    >
-      +
-    </button>
-
-    <!-- Modal-Overlay -->
-    <!-- <div v-if="isFormOpen" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-50 flex items-center justify-center">
-      <TransactionForm @close="isFormOpen = false" />
-    </div>
-
-  </div> -->
-  <!-- Edit-Modal -->
-   <!-- <dialog id="edit-modal" class="modal modal-bottom sm:modal-middle">
-  <div class="modal-box bg-base-100 rounded-3xl border border-black/5 max-w-md">
-    <h3 class="text-lg font-bold text-base-content mb-4">Buchung bearbeiten</h3>
-    
-    <TransactionForm 
-      :editTransaction="transactionToEdit" 
-      @close-edit="closeEditModal"
-    />
-  </div>
-</dialog> -->
-
-  <!-- Bestätigungs-Modal -->
-<!-- <dialog id="delete-modal" class="modal modal-bottom sm:modal-middle">
-  <div class="modal-box bg-base-100 rounded-3xl border border-black/5">
-    <h3 class="text-lg font-bold text-base-content">Buchung löschen?</h3>
-    <p class="py-4 text-sm text-bookings-heading">
-      Möchtest du diese Buchung wirklich unwiderruflich entfernen?
-    </p>
-    <div class="modal-action grid grid-cols-2 gap-3">
-      <form method="dialog">
-        <button class="btn btn-ghost w-full rounded-2xl">Abbrechen</button>
-      </form>
-      <!-- Ruft die endgültige Lösch-Funktion auf -->
-      <!-- <button @click="confirmDelete" class="btn btn-error text-white rounded-2xl">
-        Löschen
-      </button>
-    </div>
-  </div>
-</dialog>
-  
-</template> -->
