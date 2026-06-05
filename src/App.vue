@@ -8,6 +8,7 @@ const isFormOpen = ref(false);
 
 // Variable für die Buchung, die bearbeitet wird
 const transactionToEdit = ref(null);
+
 const transactionIdToDelete = ref(null);
 
 // Öffnet das Formular im Bearbeitungs-Modus
@@ -171,18 +172,16 @@ const confirmDelete = () => {
     </button>
 
     <div v-if="isFormOpen" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-50 flex items-center justify-center p-4">
-      <div class="bg-base-100 rounded-3xl border border-black/5 max-w-md w-full p-6 shadow-2xl relative">
+      <!-- <div class="bg-base-100 rounded-3xl border border-black/5 max-w-md w-full p-6 shadow-2xl relative"> -->
         
-        <h3 class="text-lg font-bold text-base-content mb-4">
-          {{ transactionToEdit ? 'Buchung bearbeiten' : 'Neue Buchung' }}
-        </h3>
+        
         
         <TransactionForm 
           :editTransaction="transactionToEdit" 
           @close="closeForm" 
         />
         
-      </div>
+      <!-- </div> -->
     </div>
 
   </div> 
@@ -203,7 +202,9 @@ const confirmDelete = () => {
     </div>
   </dialog>
 </template>
-
+<!-- <h3 class="text-lg font-bold text-base-content mb-4">
+          {{ transactionToEdit ? 'Buchung bearbeiten' : 'Neue Buchung' }}
+        </h3> -->
     <!-- <button 
       @click="isFormOpen = true"
       class="fixed bottom-8 right-8 btn btn-primary btn-circle btn-lg shadow-2xl text-2xl z-40"
