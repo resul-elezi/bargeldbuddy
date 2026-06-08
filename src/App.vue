@@ -170,7 +170,8 @@ const confirmDelete = () => {
       +
     </button>
 
-    <div v-if="isFormOpen" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-50 flex items-center justify-center p-4">
+    <!-- <div v-if="isFormOpen" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-50 flex items-center justify-center p-4"> -->
+    <div v-if="isFormOpen" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-50 flex items-center justify-center p-2">
         
         <TransactionForm 
           :editTransaction="transactionToEdit" 
