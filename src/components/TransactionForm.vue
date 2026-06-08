@@ -84,7 +84,8 @@ const save = () => {
 
 <template>
   <!-- Card-Design für das Formular -->
-  <div class="bg-white p-4 sm:p-6 rounded-3xl shadow-2xl border border-black/5 w-full max-w-[21.5rem] sm:max-w-md mx-auto mb-28 sm:mb-4">
+  <!-- <div class="bg-white p-4 sm:p-6 rounded-3xl shadow-2xl border border-black/5 w-full max-w-[21.5rem] sm:max-w-md mx-auto mb-28 sm:mb-4"> -->
+  <div class="bg-white p-6 rounded-3xl shadow-2xl border border-black/5 w-full max-w-md mx-auto mb-4">
     <h3 class="text-lg font-bold text-base-content mb-4">
           {{ props.editTransaction ? 'Buchung bearbeiten' : 'Neue Buchung' }}
         </h3>
