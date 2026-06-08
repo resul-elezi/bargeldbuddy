@@ -127,28 +127,28 @@ const save = () => {
         v-model="form.description"
         type="text"
         placeholder="Wofür? (z.B. Einkauf, Miete...)"
-        class="input w-full rounded-2xl bg-base-100 border-none outline-(--color-base-content)/20 shadow-none"
+        class="input w-full rounded-2xl bg-base-100 border-none outline-base-content/20 shadow-none"
       />
 
       <!-- NEU: Datum -->
       <div class="flex flex-col gap-1">
         <label class="text-[10px] font-bold uppercase opacity-40 ml-2">Datum</label>
-        <input v-model="form.date" type="date" class="input input-field w-full rounded-2xl bg-(--color-base-100) border-none outline-(--color-base-content)/20 shadow-none" />
+        <input v-model="form.date" type="date" class="input input-field w-full rounded-2xl bg-base-100 border-none outline-base-content/20 shadow-none" />
       </div>
 
       <!-- NEU: Zahlungsart -->
       <div class="flex flex-col gap-1">
         <label class="text-[10px] font-bold uppercase opacity-40 ml-2">Zahlungsart</label>
         <div class="grid grid-cols-3 gap-2">
-          <button @click="form.paymentMethod = 'cash'" :class="form.paymentMethod === 'cash' ? 'bg-primary text-white' : 'bg-(--color-base-200) text-(--color-base-content)'" class="py-2 rounded-xl text-xs font-bold transition-all">Bar</button>
-          <button @click="form.paymentMethod = 'card'" :class="form.paymentMethod === 'card' ? 'bg-primary text-white' : 'bg-(--color-base-200) text-(--color-base-content)'" class="py-2 rounded-xl text-xs font-bold transition-all">Karte</button>
-          <button @click="form.paymentMethod = 'other'" :class="form.paymentMethod === 'other' ? 'bg-primary text-white' : 'bg-(--color-base-200) text-(--color-base-content)'" class="py-2 rounded-xl text-xs font-bold transition-all">Andere</button>
+          <button @click="form.paymentMethod = 'cash'" :class="form.paymentMethod === 'cash' ? 'bg-primary text-white' : 'bg-base-200 text-base-content'" class="py-2 rounded-xl text-xs font-bold transition-all">Bar</button>
+          <button @click="form.paymentMethod = 'card'" :class="form.paymentMethod === 'card' ? 'bg-primary text-white' : 'bg-base-200 text-base-content'" class="py-2 rounded-xl text-xs font-bold transition-all">Karte</button>
+          <button @click="form.paymentMethod = 'other'" :class="form.paymentMethod === 'other' ? 'bg-primary text-white' : 'bg-base-200 text-base-content'" class="py-2 rounded-xl text-xs font-bold transition-all">Andere</button>
         </div>
       </div>
 
       <!-- Buttons -->
       <div class="grid grid-cols-2 gap-2">
-        <button type="button" @click="closeAndReset" class="btn btn-ghost rounded-2xl">
+        <button type="button" @click="closeAndReset" class="btn btn-ghost rounded-2xl bg-base-200">
     Abbrechen
   </button>
   

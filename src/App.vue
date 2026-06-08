@@ -189,9 +189,9 @@ const confirmDelete = () => {
       </p>
       <div class="modal-action grid grid-cols-2 gap-3">
         <form method="dialog">
-          <button class="btn btn-ghost w-full rounded-2xl">Abbrechen</button>
+          <button class="btn btn-ghost w-full rounded-2xl bg-base-200">Abbrechen</button>
         </form>
-        <button @click="confirmDelete" class="btn btn-error text-white rounded-2xl">
+        <button @click="confirmDelete" class="btn btn-error text-white rounded-2xl shadow-none">
           Löschen
         </button>
       </div>
