@@ -17,15 +17,21 @@ export const formatCurrency = (cents, currency = 'CHF') => {
   const locale = currency === 'CHF' ? 'de-CH' : 'de-DE';
   
   try {
-    return new Intl.NumberFormat(locale, {
+    let formatted = new Intl.NumberFormat(locale, {
       style: 'currency',
       currency: currency,
     }).format(cents / 100);
+
+    // NEU: Wenn es negativ ist, fixen wir das gequetschte "CHF-200.00" zu "CHF -200.00"
+    return formatted.replace(`${currency}-`, `${currency} -`);
+
   } catch (e) {
     // Falls mal eine ungültige Währung reinkommt, fallen wir auf CHF zurück
-    return new Intl.NumberFormat('de-CH', {
+    let formattedFallback = new Intl.NumberFormat('de-CH', {
       style: 'currency',
       currency: 'CHF',
     }).format(cents / 100);
+
+    return formattedFallback.replace('CHF-', 'CHF -');
   }
 };
