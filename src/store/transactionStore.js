@@ -30,12 +30,12 @@ export const transactionStore = reactive({
 
   // Berechnete Werte (Getters)
   get totalIncome() {
-    return this.transactions
+    return this.filteredTransactions
       .filter(t => t.type === 'income')
       .reduce((sum, t) => sum + t.amount, 0);
   },
   get totalExpenses() {
-    return this.transactions
+    return this.filteredTransactions
       .filter(t => t.type === 'expense')
       .reduce((sum, t) => sum + t.amount, 0);
   },
