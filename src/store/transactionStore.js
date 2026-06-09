@@ -15,6 +15,19 @@ export const transactionStore = reactive({
   // Neue Settings-Sektion
   settings: JSON.parse(localStorage.getItem('bb_settings')) || { currency: 'CHF' },
 
+  // Startet automatisch mit dem aktuellen Monat (z.B. "2026-06")
+  currentMonthFilter: new Date().toISOString().substr(0, 7),
+
+  // NEU: Ein Getter, der nur die Buchungen des ausgewählten Monats zurückgibt
+  get filteredTransactions() {
+    return this.transactions.filter(t => {
+      if (!t.timestamp) return false;
+      const tDate = new Date(t.timestamp);
+      const tYearMonth = tDate.toISOString().substr(0, 7); // Ergibt "YYYY-MM"
+      return tYearMonth === this.currentMonthFilter;
+    });
+  },
+
   // Berechnete Werte (Getters)
   get totalIncome() {
     return this.transactions
@@ -29,6 +42,11 @@ export const transactionStore = reactive({
 
   get balance() {
     return this.totalIncome - this.totalExpenses;
+  },
+
+  // Methode zum Ändern des Filter-Monats
+  setMonthFilter(yearMonth) {
+    this.currentMonthFilter = yearMonth;
   },
 
   // Methode zum Ändern der Währung
