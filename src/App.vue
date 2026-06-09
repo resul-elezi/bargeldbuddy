@@ -90,9 +90,11 @@ const confirmDelete = () => {
       </div>
     </header>
 
-    <!-- Datum Bereich -->
 
-    <div class="flex items-center justify-between bg-base-100 p-3 rounded-2xl shadow-sm max-w-md mx-auto border border-black/5 mb-4">
+    <main class="max-w-md mx-auto space-y-6">
+      <!-- Datum Bereich -->
+
+    <div class="flex items-center justify-between bg-base-100 p-3 rounded-2xl shadow-sm max-w-md mx-auto border border-black/5">
       <button 
         @click="changeMonth(-1)" 
         class="btn btn-ghost btn-circle btn-sm font-bold text-lg"
@@ -113,8 +115,7 @@ const confirmDelete = () => {
         ›
       </button>
     </div>
-
-    <main class="max-w-md mx-auto space-y-6">
+    
       <h2 class="text-sm font-black uppercase tracking-widest text-(--color-bookings-heading) px-1">Letzte Buchungen</h2>
 
 
