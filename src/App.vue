@@ -16,6 +16,26 @@ const openEditModal = (transaction) => {
   isFormOpen.value = true; // Nutzt das gleiche Overlay!
 };
 
+// Macht aus "2026-06" ein lesbares "Juni 2026"
+const formatFilterMonth = (yearMonthStr) => {
+  const [year, month] = yearMonthStr.split('-');
+  const date = new Date(year, month - 1);
+  return date.toLocaleDateString('de-DE', { month: 'long', year: 'numeric' });
+};
+
+// Blättert Monate vor oder zurück
+const changeMonth = (direction) => {
+  const [year, month] = transactionStore.currentMonthFilter.split('-').map(Number);
+  // Wir erstellen ein neues Datum und addieren/subtrahieren einen Monat
+  const newDate = new Date(year, month - 1 + direction, 1);
+  
+  const newYear = newDate.getFullYear();
+  const newMonth = String(newDate.getMonth() + 1).padStart(2, '0');
+  
+  // Setzt den neuen Filter im Store (z.B. "2026-05")
+  transactionStore.setMonthFilter(`${newYear}-${newMonth}`);
+};
+
 // Schließt das Formular (egal ob neu oder edit) und resettet den Zustand
 const closeForm = () => {
   isFormOpen.value = false;
@@ -73,6 +93,28 @@ const confirmDelete = () => {
     <main class="max-w-md mx-auto space-y-6">
       <h2 class="text-sm font-black uppercase tracking-widest text-(--color-bookings-heading) px-1">Letzte Buchungen</h2>
 
+      <div class="flex items-center justify-between bg-base-100 p-3 rounded-2xl shadow-sm max-w-md mx-auto border border-black/5">
+        <button 
+          @click="changeMonth(-1)" 
+          class="btn btn-ghost btn-circle btn-sm font-bold text-lg"
+        >
+          ‹
+        </button>
+        
+        <div class="text-center">
+          <span class="text-sm font-black uppercase tracking-wider text-base-content">
+            {{ formatFilterMonth(transactionStore.currentMonthFilter) }}
+          </span>
+        </div>
+        
+        <button 
+          @click="changeMonth(1)" 
+          class="btn btn-ghost btn-circle btn-sm font-bold text-lg"
+        >
+          ›
+        </button>
+      </div>
+
       <section class="max-w-md mx-auto mb-8">
         <div class="stats stats-vertical sm:stats-horizontal shadow-sm w-full bg-base-100 rounded-3xl border border-black/5 overflow-hidden">
           
@@ -99,13 +141,13 @@ const confirmDelete = () => {
       
       
       <!-- Liste -->
-      <div v-if="transactionStore.transactions.length === 0" class="text-center py-12 bg-white/50 rounded-3xl border-2 border-dashed border-slate-200">
-         <p class="opacity-40 italic">Noch nichts notiert...</p>
+      <div v-if="transactionStore.filteredTransactions.length === 0" class="text-center py-12 bg-white/50 rounded-3xl border-2 border-dashed border-slate-200">
+         <p class="opacity-40 italic">In diesem Monat noch nichts notiert...</p>
       </div>
 
       <div class="space-y-3">
         <div 
-          v-for="t in transactionStore.transactions" 
+          v-for="t in transactionStore.filteredTransactions" 
           :key="t.id"
           class="flex items-center justify-between bg-base-100 p-4 sm:p-5 rounded-2xl shadow-sm"
         >
