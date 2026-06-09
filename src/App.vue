@@ -92,27 +92,27 @@ const confirmDelete = () => {
 
     <!-- Datum Bereich -->
 
-<div class="flex items-center justify-between bg-base-100 p-3 rounded-2xl shadow-sm max-w-md mx-auto border border-black/5 mb-4">
-        <button 
-          @click="changeMonth(-1)" 
-          class="btn btn-ghost btn-circle btn-sm font-bold text-lg"
-        >
-          ‹
-        </button>
-        
-        <div class="text-center">
-          <span class="text-sm font-black uppercase tracking-wider text-base-content">
-            {{ formatFilterMonth(transactionStore.currentMonthFilter) }}
-          </span>
-        </div>
-        
-        <button 
-          @click="changeMonth(1)" 
-          class="btn btn-ghost btn-circle btn-sm font-bold text-lg"
-        >
-          ›
-        </button>
+    <div class="flex items-center justify-between bg-base-100 p-3 rounded-2xl shadow-sm max-w-md mx-auto border border-black/5 mb-4">
+      <button 
+        @click="changeMonth(-1)" 
+        class="btn btn-ghost btn-circle btn-sm font-bold text-lg"
+      >
+        ‹
+      </button>
+      
+      <div class="text-center">
+        <span class="text-sm font-black uppercase tracking-wider text-base-content">
+          {{ formatFilterMonth(transactionStore.currentMonthFilter) }}
+        </span>
       </div>
+      
+      <button 
+        @click="changeMonth(1)" 
+        class="btn btn-ghost btn-circle btn-sm font-bold text-lg"
+      >
+        ›
+      </button>
+    </div>
 
     <main class="max-w-md mx-auto space-y-6">
       <h2 class="text-sm font-black uppercase tracking-widest text-(--color-bookings-heading) px-1">Letzte Buchungen</h2>
@@ -144,7 +144,7 @@ const confirmDelete = () => {
       
       
       <!-- Liste -->
-      <div v-if="transactionStore.filteredTransactions.length === 0" class="text-center py-12 bg-white/50 rounded-3xl border-2 border-dashed border-slate-200">
+      <div v-if="transactionStore.filteredTransactions.length === 0" class="text-center py-12 bg-white/50 rounded-3xl border-2 border-dashed border-base-200">
          <p class="opacity-40 italic">In diesem Monat noch nichts notiert...</p>
       </div>
 
