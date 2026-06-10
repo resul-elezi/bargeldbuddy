@@ -62,6 +62,21 @@ const confirmDelete = () => {
     modal.close();
   }
 };
+
+// Export function
+const exportToPDF = () => {
+  // Setzt den Titel des Browser-Tabs kurz um, damit die PDF-Datei automatisch einen schönen Namen bekommt
+  const originalTitle = document.title;
+  const currentMonth = formatFilterMonth(transactionStore.currentMonthFilter);
+  document.title = `BargeldBuddy_Report_${currentMonth.replace(' ', '_')}`;
+  
+  // Öffnet das native Druckfenster / "Als PDF speichern"
+  window.print();
+  
+  // Setzt den Tab-Titel wieder zurück
+  document.title = originalTitle;
+};
+
 </script>
 
 <template>
