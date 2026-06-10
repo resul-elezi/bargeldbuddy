@@ -79,11 +79,11 @@ export const transactionStore = reactive({
       this.transactions.splice(index, 1);
     }
   },
-  clearAllTransactions() {
-    if (confirm('Möchtest du wirklich alle Buchungen löschen? Dies kann nicht rückgängig gemacht werden.')) {
-      this.transactions.length = 0; // Leert das reaktive Array sauber
-    }
-  },
+  // clearAllTransactions() {
+  //   if (confirm('Möchtest du wirklich alle Buchungen löschen? Dies kann nicht rückgängig gemacht werden.')) {
+  //     this.transactions.length = 0; // Leert das reaktive Array sauber
+  //   }
+  // },
   // Aktion zum Aktualisieren einer bestehenden Transaktion
   updateTransaction(updatedTransaction) {
     const index = this.transactions.findIndex(t => t.id === updatedTransaction.id);

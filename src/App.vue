@@ -225,14 +225,14 @@ const exportToPDF = () => {
       </div>
 
       <!-- Reset Bereich -->
-      <div v-if="transactionStore.transactions.length > 0" class="pt-12 pb-8 text-center">
+      <!-- <div v-if="transactionStore.transactions.length > 0" class="pt-12 pb-8 text-center">
         <button 
           @click="transactionStore.clearAllTransactions()" 
           class="btn btn-ghost btn-xs opacity-30 hover:opacity-100 transition-opacity"
         >
           Alle Daten zurücksetzen
         </button>
-      </div>
+      </div> -->
     </main>
 
     <!-- Floating Action Button -->
