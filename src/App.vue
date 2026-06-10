@@ -80,7 +80,7 @@ const exportToPDF = () => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-base-100 p-4"> <!-- pb-24 für Platz unten -->
+  <div class="min-h-screen bg-base-100 p-4 pb-24"> <!-- pb-24 für Platz unten -->
     
     <header class="py-8 text-center">
       <h1 class="text-4xl font-black tracking-tight text-base-content">Bargeld<span class="text-primary">Buddy</span></h1>
