@@ -116,32 +116,44 @@ const confirmDelete = () => {
       </button>
     </div>
     
-      <h2 class="text-sm font-black uppercase tracking-widest text-(--color-bookings-heading) px-1">Letzte Buchungen</h2>
+    <div class="flex items-center justify-between px-1 mb-4 print:hidden">
+      <h2 class="text-sm font-black uppercase tracking-widest text-(--color-bookings-heading)">
+        Letzte Buchungen
+      </h2>
+      
+      <!-- Der PDF-Export-Button (wird beim Drucken selbst versteckt) -->
+      <button 
+        @click="exportToPDF" 
+        class="btn btn-ghost btn-xs text-xs opacity-60 hover:opacity-100 flex items-center gap-1"
+      >
+        <span class="text-sm">📄</span> PDF Export
+      </button>
+    </div>
 
 
-      <section class="max-w-md mx-auto mb-8">
-        <div class="stats stats-vertical sm:stats-horizontal shadow-sm w-full bg-base-100 rounded-3xl border border-black/5 overflow-hidden">
-          
-          <!-- Gesamter Verbrauch (Ausgaben) -->
-          <div class="stat">
-            <div class="stat-title text-xs font-bold uppercase tracking-wider">Verbrauch</div>
-            <div class="stat-value text-error text-2xl">
-              {{ formatCurrency(transactionStore.totalExpenses, transactionStore.settings.currency) }}
-            </div>
-            <div class="stat-desc mt-1">Diesen Monat</div>
+    <section class="max-w-md mx-auto mb-8">
+      <div class="stats stats-vertical sm:stats-horizontal shadow-sm w-full bg-base-100 rounded-3xl border border-black/5 overflow-hidden">
+        
+        <!-- Gesamter Verbrauch (Ausgaben) -->
+        <div class="stat">
+          <div class="stat-title text-xs font-bold uppercase tracking-wider">Verbrauch</div>
+          <div class="stat-value text-error text-2xl">
+            {{ formatCurrency(transactionStore.totalExpenses, transactionStore.settings.currency) }}
           </div>
-          
-          <!-- Was übrig ist (Bilanz) -->
-          <div class="stat border-l border-slate-50">
-            <div class="stat-title text-xs font-bold uppercase tracking-wider">Übrig</div>
-            <div class="stat-value text-2xl" :class="transactionStore.balance < 0 ? 'text-error' : 'text-success'">
-                    {{ formatCurrency(transactionStore.balance, transactionStore.settings.currency) }}
-                  </div>
-            <div class="stat-desc mt-1 italic">Vom Lohn</div>
-          </div>
-
+          <div class="stat-desc mt-1">Diesen Monat</div>
         </div>
-      </section>
+        
+        <!-- Was übrig ist (Bilanz) -->
+        <div class="stat border-l border-slate-50">
+          <div class="stat-title text-xs font-bold uppercase tracking-wider">Übrig</div>
+          <div class="stat-value text-2xl" :class="transactionStore.balance < 0 ? 'text-error' : 'text-success'">
+                  {{ formatCurrency(transactionStore.balance, transactionStore.settings.currency) }}
+                </div>
+          <div class="stat-desc mt-1 italic">Vom Lohn</div>
+        </div>
+
+      </div>
+    </section>
       
       
       <!-- Liste -->
