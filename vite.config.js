@@ -31,6 +31,9 @@ export default defineConfig({
       }
     })
   ],
+  build: {
+    cssMinify: 'esbuild'
+  },
   server: {
     allowedHosts: [
       ".trycloudflare.com",
