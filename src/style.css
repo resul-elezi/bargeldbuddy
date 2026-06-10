@@ -1,27 +1,11 @@
 @import "tailwindcss";
 
 
-@plugin "daisyui";
+ /* @plugin "daisyui" {
+   themes: light --default;
+ } */
 
-@theme {
-
-  --color-app-bg: #f9f7f4;
-  --color-base-100: #fcfbf9;
-  --color-base-200: #f5f3ee;
-  --color-primary: #00a140;
-  --color-primary-content: var(--color-white);
-  --color-base-content: #2e2928;
-  --color-bookings-heading: #8c8989;
-  --text-red: #ef3727;
-  --color-error: #f14f41;
-  --color-success: #00c950;
-
-}
-
-/* @plugin "daisyui";
-@plugin "daisyui/theme" {
-  name: "light";
-  default: true;
+/* @theme {
 
   --color-app-bg: #f9f7f4;
   --color-base-100: #fcfbf9;
@@ -33,7 +17,27 @@
   --text-red: #ef3727;
   --color-error: #f14f41;
   --color-success: #00c950;
+
 } */
+
+@plugin "daisyui";
+@plugin "daisyui/theme" {
+  name: "myTheme";
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+
+  --color-app-bg: #f9f7f4;
+  --color-base-100: #fcfbf9;
+  --color-base-200: #f5f3ee;
+  --color-primary: #00a140;
+  --color-primary-content: var(--color-white);
+  --color-base-content: #2e2928;
+  --color-bookings-heading: #8c8989;
+  --text-red: #ef3727;
+  --color-error: #f14f41;
+  --color-success: #00c950;
+}
 
 body {
   /* background-color: var(--color-app-bg); */
