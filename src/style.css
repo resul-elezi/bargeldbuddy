@@ -23,3 +23,60 @@ body {
   margin: 0;
   font-family: sans-serif;
 }
+
+@media print {
+  /* 1. Alles verstecken, was nicht auf das Papier gehört */
+  nav, 
+  form, 
+  button, 
+  .print\:hidden {
+    display: none !important;
+  }
+
+  /* 2. Hintergrundfarben und Abstände für das Drucklayout optimieren */
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 12pt;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* 3. Den Hauptcontainer für die ganze Seite auf Vollbild ziehen */
+  main {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* 4. Die Statistik-Boxen sauber nebeneinander drucken */
+  .stats {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    border: 1px solid #e2e8f0 !important;
+    background: #f8fafc !important;
+    page-break-inside: avoid;
+  }
+  
+  .stat {
+    border: none !important;
+    flex: 1;
+  }
+
+  /* 5. Die Buchungsliste für den Druck optimieren (Hintergründe erzwingen) */
+  .bg-base-100 {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    page-break-inside: avoid;
+  }
+  
+  /* Erzwingt, dass der Browser Farben beim Drucken beibehält */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
